@@ -2,7 +2,18 @@
 
 static int	ft_strcpos(const char c, const char *str, const char limit)
 {
-	while ()
+	int i;
+
+	i = 0;
+	while (str && str[i])
+	{
+		if (str[i] == limit)
+			return (0);
+		if (c == str[i])
+			return (i);
+		i++;
+	}
+	return (0);
 }
 
 /*
