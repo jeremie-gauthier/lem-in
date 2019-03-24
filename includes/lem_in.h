@@ -45,4 +45,10 @@ int				ft_buf_parser(const char *buf, t_parser * data, t_btree **graph);
 int				ft_register_ants(const char *buf, int *i, t_parser *data);
 int				ft_register_room(const char *buf, int *i, t_parser *data, t_btree **graph);
 
+/*
+**	B_tree tools functions
+*/
+
+int				ft_btreecmp(const void *struct1, const void *struct2);
+
 #endif

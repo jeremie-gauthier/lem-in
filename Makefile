@@ -5,7 +5,8 @@ SOURCES	=	main.c\
 			read_stdin.c\
 			buf_parser.c\
 			register_ants.c\
-			register_rooms.c
+			register_rooms.c\
+			ft_btreecmp.c
 
 DIR_C	=	srcs
 
