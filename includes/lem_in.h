@@ -34,14 +34,15 @@ typedef struct	s_room
 */
 
 t_parser		*init_parser(void);
-t_room			*init_room(const char *name, const int status);
+t_room			*init_room(char *name, const int status);
 
 /*
 **	Parsing functions
 */
 
 int				ft_read_stdin(t_btree **graph);
+int				ft_buf_parser(const char *buf, t_parser * data, t_btree **graph);
 int				ft_register_ants(const char *buf, int *i, t_parser *data);
-int		ft_buf_parser(const char *buf, t_parser * data, t_btree **graph);
+int				ft_register_room(const char *buf, int *i, t_parser *data, t_btree **graph);
 
 #endif

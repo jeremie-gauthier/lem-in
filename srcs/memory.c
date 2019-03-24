@@ -14,13 +14,13 @@ t_parser	*init_parser(void)
 	return (new);
 }
 
-t_room		*init_room(const char *name, const int status)
+t_room		*init_room(char *name, const int status)
 {
 	t_room	*new;
 
 	if (!(new = (t_room*)malloc(sizeof(*new))))
 		return (NULL);
-	new->name = ft_strdup(name);
+	new->name = name;
 	new->x = 0;
 	new->y = 0;
 	new->filled = false;
