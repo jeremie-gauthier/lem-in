@@ -50,13 +50,13 @@
 # define BG_CYAN	"\033[46m"
 # define CLEAR		"\e[1;1H\e[2J"
 
-typedef struct	s_buf
+typedef struct		s_buf
 {
 	void			*str;
 	size_t			len;
-}				t_buf;
+}					t_buf;
 
-typedef struct	s_flags
+typedef struct		s_flags
 {
 	unsigned short	hh	: 1;
 	unsigned short	h	: 1;
@@ -73,7 +73,7 @@ typedef struct	s_flags
 	int				prc;
 	int				pad;
 	char			c;
-}				t_flags;
+}					t_flags;
 
 typedef enum		e_bool
 {

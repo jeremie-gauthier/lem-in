@@ -1,9 +1,11 @@
-#ifndef __LEM_IN_H__
-# define __LEM_IN_H__
+#ifndef LEM_IN_H
+# define LEM_IN_H
 
 # include "../libft/libft.h"
 
 # define BUF_SIZE	256
+# define FAIL		0
+# define SUCCESS	1
 # define COMMENTARY	"##"
 # define START		"##start"
 # define END		"##end"
@@ -12,9 +14,9 @@ typedef struct	s_parser
 {
 	int		ants;
 	int		start	:  2;
-	int		end	:  2;
-	int		steps	:  2;
-	int		ret		: 26;
+	int		end		:  2;
+	int		steps	:  1;
+	int		ret		: 27;
 }				t_parser;
 
 typedef struct	s_room
@@ -24,7 +26,7 @@ typedef struct	s_room
 	int		y;
 	t_bool	filled;
 	t_list	*nghbr;
-	char	status;
+	int		status;
 }				t_room;
 
 /*
@@ -32,8 +34,14 @@ typedef struct	s_room
 */
 
 t_parser		*init_parser(void);
+t_room			*init_room(const char *name, const int status);
 
-int				read_stdin(t_btree **graph);
-int				register_ants(const char *buf, int *i, t_parser *data);
+/*
+**	Parsing functions
+*/
+
+int				ft_read_stdin(t_btree **graph);
+int				ft_register_ants(const char *buf, int *i, t_parser *data);
+int		ft_buf_parser(const char *buf, t_parser * data, t_btree **graph);
 
 #endif

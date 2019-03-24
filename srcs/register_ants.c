@@ -11,7 +11,7 @@ static int	ft_intlen(long nb)
 	return (len);
 }
 
-int		register_ants(const char *buf, int *i, t_parser *data)
+int		ft_register_ants(const char *buf, int *i, t_parser *data)
 {
 	long	ants;
 	int		diff;
@@ -23,10 +23,10 @@ int		register_ants(const char *buf, int *i, t_parser *data)
 	ants = ft_atol_base(buf, 10);
 	len = ft_intlen(ants);
 	if (diff - len != 0)
-		return (0);
+		return (FAIL);
 	if (ants < -2147483648 || ants > 2147483647)
-		return (0);	
+		return (FAIL);	
 	data->ants = ants;
 	*i += len;
-	return (1);
+	return (SUCCESS);
 }

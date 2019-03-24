@@ -1,9 +1,10 @@
 NAME	=	lem-in
 
 SOURCES	=	main.c\
-			parser.c\
+			read_stdin.c\
 			memory.c\
-			register_ants.c
+			register_ants.c\
+			buf_parser.c
 
 DIR_C	=	srcs
 

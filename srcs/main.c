@@ -16,7 +16,7 @@ int		main(int argc, char **argv)
 	if (argc == 1)
 	{
 		graph = NULL;
-		if (!(read_stdin(&graph)))
+		if (!(ft_read_stdin(&graph)))
 			return (clean_quit(&graph, 1));
 	}
 	else
