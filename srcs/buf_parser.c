@@ -32,7 +32,11 @@ int		ft_buf_parser(const char *buf, t_parser *data, t_btree **graph)
 	{
 		if (data->steps == 0)
 		{
-			if (!(ft_instr(' ', )))
+			if (!(ft_strcpos(' ', buf, '\n')))
+				data->steps = 1;
+			else
+				if (!(ft_register_room(buf, &i, data, graph)))
+					return (FAIL);
 		}
 		else
 		{
