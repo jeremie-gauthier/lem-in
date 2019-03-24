@@ -6,13 +6,13 @@
 # define BUF_SIZE	256
 # define COMMENTARY	"##"
 # define START		"##start"
-# define STOP		"##stop"
+# define END		"##end"
 
 typedef struct	s_parser
 {
 	int		ants;
 	int		start	:  2;
-	int		stop	:  2;
+	int		end	:  2;
 	int		steps	:  2;
 	int		ret		: 26;
 }				t_parser;
