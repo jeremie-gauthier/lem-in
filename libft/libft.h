@@ -225,7 +225,7 @@ void				ft_stack_remove(t_stack **head, const unsigned int index);
 
 t_btree				*btree_create_node(void *data);
 void				btree_insert_data(t_btree **root, void *x,
-						int (*cmpf)(void *, void *));
+						int (*cmpf)(const void *, const void *));
 int					btree_height(t_btree *root);
 int					btree_balance_factor(t_btree *root);
 void				btree_rotate_right(t_btree **root);

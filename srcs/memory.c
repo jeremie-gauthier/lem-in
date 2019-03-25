@@ -11,6 +11,8 @@ t_parser	*init_parser(void)
 	new->end	=  0;
 	new->steps	=  0;
 	new->ret	=  0;
+	new->last_name_known = NULL;
+	new->last_line = NULL;
 	return (new);
 }
 

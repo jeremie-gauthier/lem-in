@@ -17,6 +17,8 @@ typedef struct	s_parser
 	int		end		:  2;
 	int		steps	:  1;
 	int		ret		: 27;
+	char	*last_name_known;
+	char	*last_line;
 }				t_parser;
 
 typedef struct	s_room
@@ -44,5 +46,7 @@ int				ft_read_stdin(t_btree **graph);
 int				ft_buf_parser(const char *buf, t_parser * data, t_btree **graph);
 int				ft_register_ants(const char *buf, int *i, t_parser *data);
 int				ft_register_room(const char *buf, int *i, t_parser *data, t_btree **graph);
+int				ft_register_x(const char *buf, int *i, t_btree *graph, const char *name);
+int				ft_register_y(const char *buf, int *i, t_btree *graph, const char *name);
 
 #endif
