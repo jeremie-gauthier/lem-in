@@ -2,8 +2,8 @@
 
 int	ft_btreecmp(const void *struct1, const void *struct2)
 {
-	t_room	room1;
-	t_room	room2;
+	t_room	*room1;
+	t_room	*room2;
 	char	*name1;
 	char	*name2;
 
