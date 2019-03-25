@@ -39,7 +39,7 @@ static void	insert_left(t_btree **root, void *x, int (*cmpf)(void *, void *))
 }
 
 void		btree_insert_data(t_btree **root, void *x,
-				int (*cmpf)(void *, void *))
+				int (*cmpf)(const void *, const void *))
 {
 	if (*root == NULL)
 		*root = btree_create_node(x);
