@@ -5,6 +5,7 @@ static int	ft_strcpos(const char c, const char *str, const char limit)
 	int i;
 
 	i = 0;
+	// ft_printf("STR = %s\n", str);
 	while (str && str[i])
 	{
 		if (str[i] == limit)
@@ -30,26 +31,33 @@ int		ft_buf_parser(const char *buf, t_parser *data, t_btree **graph)
 	// ft_printf("%s\n", buf);
 	while (buf[i])
 	{
-		if (data->steps == 0)
+		// ft_printf("%i & %i & |%s|\n", data->steps, i, &buf[i]);
+		if (ft_strncmp(&buf[i], COMMENTARY, 1) == 0)
+			ft_register_com(&buf[i], &i, data);
+		else if (data->steps == 0)
 		{
-			if (!(ft_strcpos(' ', buf, '\n')))
+			if (!(ft_strcpos(' ', &buf[i], '\n')))
 			{
-				// ft_printf("phase 2 |%s|\n", &buf[i]);
+				// ft_printf("phase 2 |%s|%i\n", &buf[i], ft_strcpos(' ', buf, '\n'));
 				data->steps = 1;
+				if (data->start == NULL || data->end == NULL)
+					return (FAIL);
 			}
 			else
 				if (!(ft_register_room(buf, &i, data, graph)))
 					return (FAIL);
+			data->status = LAMBDA;
 		}
 		else
 		{
-
+			if (ft_strcpos(' ', &buf[i], '\n')
+					|| !ft_strcpos('-', &buf[i], '\n'))
+				return (FAIL);
+			// if (!(ft_register_path(buf, &i, graph)))
+			// 	return (FAIL);
+			data->status = LAMBDA;
 		}
-		data->status = 0;
 		i++;
 	}
-	(void)buf;
-	(void)data;
-	(void)graph;
 	return (1);
 }

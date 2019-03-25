@@ -3,11 +3,14 @@ NAME	=	lem-in
 SOURCES	=	main.c\
 			memory.c\
 			ft_btreecmp.c\
+			ft_strccmp.c\
 			read_stdin.c\
 			buf_parser.c\
 			register_ants.c\
 			register_room.c\
-			register_coord.c
+			register_coord.c\
+			register_com.c\
+			register_path.c
 
 DIR_C	=	srcs
 

@@ -15,17 +15,11 @@
 void	*btree_search_data(t_btree *root, void *data_ref,
 			int (*cmpf)(const void *, const void *))
 {
-	t_btree	*ret;
-
-	ret = NULL;
-	if (root && data_ref && cmpf)
-	{
-		if (root->left)
-			ret = btree_search_data(root->left, data_ref, cmpf);
-		if (cmpf(data_ref, root->data) == 1)
-			return (root);
-		if (root->right)
-			ret = btree_search_data(root->right, data_ref, cmpf);
-	}
-	return (ret);
+	if (root == NULL)
+		return (NULL);
+	if (cmpf(root->data, data_ref) > 0)
+		return (btree_search_data(root->left, data_ref, cmpf));
+	else if (cmpf(root->data, data_ref) < 0)
+		return (btree_search_data(root->right, data_ref, cmpf));
+	return (root->data);
 }

@@ -12,14 +12,11 @@ static int	clean_quit(t_parser **data, int ret)
 **	chunk > line > segment.
 */
 
-int			ft_read_stdin(t_btree **graph)
+int			ft_read_stdin(t_btree **graph, t_parser *data)
 {
 	char		buf[BUF_SIZE + 1];
-	t_parser	*data;
 	int			i;
 
-	if (!(data = init_parser()))
-		return (FAIL);
 	while ((data->ret = read(0, buf, BUF_SIZE)) > 0)
 	{
 		buf[data->ret] = '\0';
@@ -30,6 +27,8 @@ int			ft_read_stdin(t_btree **graph)
 		if (!(ft_buf_parser(&buf[i], data, graph)))
 			return (clean_quit(&data, FAIL));
 	}
+	if (data->ret == 0 && *graph == NULL)
+		return (clean_quit(&data, FAIL));
 	ft_printf("ants = %i\n", data->ants);
 	return (clean_quit(&data, SUCCESS));
 }

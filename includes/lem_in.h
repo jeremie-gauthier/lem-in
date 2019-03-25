@@ -6,19 +6,12 @@
 # define BUF_SIZE	256
 # define FAIL		0
 # define SUCCESS	1
-# define COMMENTARY	"##"
-# define START		"##start"
-# define END		"##end"
-
-typedef struct	s_parser
-{
-	int		ants;
-	int		status	:  2;
-	int		steps	:  1;
-	int		ret		: 29;
-	char	*last_name_known;
-	char	*last_line;
-}				t_parser;
+# define COMMENTARY	"#"
+# define START_COM	"##start\n"
+# define END_COM	"##end\n"
+# define LAMBDA		0
+# define START		1
+# define END		2
 
 typedef struct	s_room
 {
@@ -29,6 +22,18 @@ typedef struct	s_room
 	t_list	*nghbr;
 	int		status;
 }				t_room;
+
+typedef struct	s_parser
+{
+	int		ants;
+	int		status	:  3;
+	int		steps	:  2;
+	int		ret		: 27;
+	t_room	*start;
+	t_room	*end;
+	char	*last_name_known;
+	char	*last_line;
+}				t_parser;
 
 /*
 **	Memory.c functions
@@ -43,17 +48,25 @@ void			btree_deep_del(t_btree **root);
 **	Parsing functions
 */
 
-int				ft_read_stdin(t_btree **graph);
+int				ft_read_stdin(t_btree **graph, t_parser *data);
 int				ft_buf_parser(const char *buf, t_parser * data, t_btree **graph);
 int				ft_register_ants(const char *buf, int *i, t_parser *data);
 int				ft_register_room(const char *buf, int *i, t_parser *data, t_btree **graph);
 int				ft_register_x(const char *buf, int *i, t_room *room);
 int				ft_register_y(const char *buf, int *i, t_room *room);
+int				ft_register_com(const char *buf, int *i, t_parser *data);
 
 /*
 **	B_tree tools functions
 */
 
 int				ft_btreecmp(const void *struct1, const void *struct2);
+int				ft_strccmp(const char *s1, const char *s2, const char limit);
+
+/*
+**	FOR TESTING PURPOSE
+*/
+
+void		print_btree(void *data);
 
 #endif

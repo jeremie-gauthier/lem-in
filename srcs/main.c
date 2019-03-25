@@ -8,23 +8,27 @@ int		clean_quit(t_btree **graph, const int ret)
 	return (ret);
 }
 
-static void		print_btree(void *data)
+void	print_btree(void *data)
 {
 	t_room	*room;
 
 	room = (t_room*)data;
-	ft_printf("NAME : %s || X : %3i || Y : %3i\n", room->name, room->x, room->y);
+	ft_printf("NAME : %s || X : %3i || Y : %3i || STATUS : %i\n",
+			room->name, room->x, room->y, room->status);
 }
 
 int		main(int argc, char **argv)
 {
-	t_btree	*graph;
+	t_btree		*graph;
+	t_parser	*data;
 
 	(void)argv;
 	if (argc == 1)
 	{
 		graph = NULL;
-		if (!(ft_read_stdin(&graph)))
+		if (!(data = init_parser()))
+			return (FAIL);
+		if (!(ft_read_stdin(&graph, data)))
 			return (clean_quit(&graph, 1));
 		btree_apply_infix_lr(graph, print_btree);
 		clean_quit(&graph, 0);
