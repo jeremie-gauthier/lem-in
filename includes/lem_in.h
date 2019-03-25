@@ -13,10 +13,9 @@
 typedef struct	s_parser
 {
 	int		ants;
-	int		start	:  2;
-	int		end		:  2;
+	int		status	:  2;
 	int		steps	:  1;
-	int		ret		: 27;
+	int		ret		: 29;
 	char	*last_name_known;
 	char	*last_line;
 }				t_parser;
@@ -37,6 +36,8 @@ typedef struct	s_room
 
 t_parser		*init_parser(void);
 t_room			*init_room(char *name, const int status);
+void			del_room(t_room **room);
+void			btree_deep_del(t_btree **root);
 
 /*
 **	Parsing functions
@@ -46,8 +47,8 @@ int				ft_read_stdin(t_btree **graph);
 int				ft_buf_parser(const char *buf, t_parser * data, t_btree **graph);
 int				ft_register_ants(const char *buf, int *i, t_parser *data);
 int				ft_register_room(const char *buf, int *i, t_parser *data, t_btree **graph);
-int				ft_register_x(const char *buf, int *i, t_btree *graph, const char *name);
-int				ft_register_y(const char *buf, int *i, t_btree *graph, const char *name);
+int				ft_register_x(const char *buf, int *i, t_room *room);
+int				ft_register_y(const char *buf, int *i, t_room *room);
 
 /*
 **	B_tree tools functions

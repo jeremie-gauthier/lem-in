@@ -224,7 +224,7 @@ void				ft_stack_remove(t_stack **head, const unsigned int index);
 */
 
 t_btree				*btree_create_node(void *data);
-void				btree_insert_data(t_btree **root, void *x,
+int					btree_insert_data(t_btree **root, void *x,
 						int (*cmpf)(const void *, const void *));
 int					btree_height(t_btree *root);
 int					btree_balance_factor(t_btree *root);
@@ -244,7 +244,7 @@ void				btree_apply_postfix_rl(t_btree *root,
 						void (*applyf)(void *));
 void				btree_remove_node(t_btree *node);
 void				*btree_search_data(t_btree *root, void *data_ref,
-						int (*cmpf)(void *, void *));
+						int (*cmpf)(const void *, const void *));
 int					btree_level_count(t_btree *root);
 void				btree_del(t_btree **root, int data_is_malloc);
 

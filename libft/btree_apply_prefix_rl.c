@@ -19,8 +19,8 @@ void	btree_apply_prefix_rl(t_btree *root, void (*applyf)(void *))
 		if (root->data)
 			applyf(root->data);
 		if (root->right)
-			btree_apply_prefix_lr(root->right, applyf);
+			btree_apply_prefix_rl(root->right, applyf);
 		if (root->left)
-			btree_apply_prefix_lr(root->left, applyf);
+			btree_apply_prefix_rl(root->left, applyf);
 	}
 }

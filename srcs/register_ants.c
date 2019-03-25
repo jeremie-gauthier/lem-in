@@ -27,6 +27,6 @@ int		ft_register_ants(const char *buf, int *i, t_parser *data)
 	if (ants < -2147483648 || ants > 2147483647)
 		return (FAIL);
 	data->ants = ants;
-	*i += len;
+	*i += len + 1;
 	return (SUCCESS);
 }

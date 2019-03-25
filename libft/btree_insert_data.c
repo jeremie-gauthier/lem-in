@@ -16,7 +16,8 @@
 **	Implementation of AVL Trees insertion
 */
 
-static void	insert_right(t_btree **root, void *x, int (*cmpf)(void *, void *))
+static void	insert_right(t_btree **root, void *x,
+				int (*cmpf)(const void *, const void *))
 {
 	if (cmpf(x, (*root)->right->data) >= 0)
 		btree_rotate_left(root);
@@ -27,7 +28,8 @@ static void	insert_right(t_btree **root, void *x, int (*cmpf)(void *, void *))
 	}
 }
 
-static void	insert_left(t_btree **root, void *x, int (*cmpf)(void *, void *))
+static void	insert_left(t_btree **root, void *x,
+				int (*cmpf)(const void *, const void *))
 {
 	if (cmpf(x, (*root)->left->data) < 0)
 		btree_rotate_right(root);
@@ -38,16 +40,22 @@ static void	insert_left(t_btree **root, void *x, int (*cmpf)(void *, void *))
 	}
 }
 
-void		btree_insert_data(t_btree **root, void *x,
+int			btree_insert_data(t_btree **root, void *x,
 				int (*cmpf)(const void *, const void *))
 {
+	if (cmpf == NULL || x == NULL)
+		return (0);
 	if (*root == NULL)
-		*root = btree_create_node(x);
+	{
+		if (!(*root = btree_create_node(x)))
+			return (0);
+	}
 	else
 	{
 		if (cmpf(x, (*root)->data) >= 0)
 		{
-			btree_insert_data(&(*root)->right, x, cmpf);
+			if (!(btree_insert_data(&(*root)->right, x, cmpf)))
+				return (0);
 			if (btree_balance_factor(*root) == -2)
 				insert_right(root, x, cmpf);
 		}
@@ -55,11 +63,13 @@ void		btree_insert_data(t_btree **root, void *x,
 		{
 			if (cmpf(x, (*root)->data) < 0)
 			{
-				btree_insert_data(&(*root)->left, x, cmpf);
+				if (!(btree_insert_data(&(*root)->left, x, cmpf)))
+					return (0);
 				if (btree_balance_factor(*root) == 2)
 					insert_left(root, x, cmpf);
 			}
 		}
 		(*root)->height = btree_height(*root);
 	}
+	return (1);
 }

@@ -6,8 +6,7 @@ SOURCES	=	main.c\
 			read_stdin.c\
 			buf_parser.c\
 			register_ants.c\
-			register_rooms.c\
-			register_nb.c\
+			register_room.c\
 			register_coord.c
 
 DIR_C	=	srcs

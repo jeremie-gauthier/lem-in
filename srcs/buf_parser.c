@@ -27,13 +27,16 @@ int		ft_buf_parser(const char *buf, t_parser *data, t_btree **graph)
 	int		i;
 
 	i = 0;
-	ft_printf("%s\n", buf);
+	// ft_printf("%s\n", buf);
 	while (buf[i])
 	{
 		if (data->steps == 0)
 		{
 			if (!(ft_strcpos(' ', buf, '\n')))
+			{
+				// ft_printf("phase 2 |%s|\n", &buf[i]);
 				data->steps = 1;
+			}
 			else
 				if (!(ft_register_room(buf, &i, data, graph)))
 					return (FAIL);
@@ -42,6 +45,7 @@ int		ft_buf_parser(const char *buf, t_parser *data, t_btree **graph)
 		{
 
 		}
+		data->status = 0;
 		i++;
 	}
 	(void)buf;

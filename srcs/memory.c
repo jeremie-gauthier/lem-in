@@ -7,8 +7,7 @@ t_parser	*init_parser(void)
 	if (!(new = (t_parser*)malloc(sizeof(*new))))
 		return (NULL);
 	new->ants	= -1;
-	new->start	=  0;
-	new->end	=  0;
+	new->status	=  0;
 	new->steps	=  0;
 	new->ret	=  0;
 	new->last_name_known = NULL;
@@ -29,4 +28,24 @@ t_room		*init_room(char *name, const int status)
 	new->nghbr = NULL;
 	new->status = status;
 	return (new);
+}
+
+void		del_room(t_room **room)
+{
+	ft_strdel(&(*room)->name);
+	ft_lstdel(&(*room)->nghbr, NULL);
+	ft_memdel((void*)room);
+}
+
+void	btree_deep_del(t_btree **root)
+{
+	if (root && *root)
+	{
+		if ((*root)->left)
+			btree_deep_del(&(*root)->left);
+		if ((*root)->right)
+			btree_deep_del(&(*root)->right);
+		del_room((t_room**)&(*root)->data);
+		ft_memdel((void*)root);
+	}
 }

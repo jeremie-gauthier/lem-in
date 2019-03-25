@@ -2,10 +2,10 @@
 
 int	ft_btreecmp(const void *struct1, const void *struct2)
 {
-	t_room	*room1;
-	t_room	*room2;
-	char	*name1;
-	char	*name2;
+	const t_room	*room1;
+	const t_room	*room2;
+	const char		*name1;
+	const char		*name2;
 
 	room1 = struct1;
 	room2 = struct2;
