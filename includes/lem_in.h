@@ -52,9 +52,9 @@ int				ft_read_stdin(t_btree **graph, t_parser *data);
 int				ft_buf_parser(const char *buf, t_parser * data, t_btree **graph);
 int				ft_register_ants(const char *buf, int *i, t_parser *data);
 int				ft_register_room(const char *buf, int *i, t_parser *data, t_btree **graph);
-int				ft_register_x(const char *buf, int *i, t_room *room);
-int				ft_register_y(const char *buf, int *i, t_room *room);
 int				ft_register_com(const char *buf, int *i, t_parser *data);
+int				ft_register_coord(const char *buf, int *i, t_room *room,
+					const char limit);
 
 /*
 **	B_tree tools functions

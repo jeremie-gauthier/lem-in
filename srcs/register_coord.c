@@ -11,42 +11,31 @@ static int	ft_intlen(long nb)
 	return (len);
 }
 
-int			ft_register_x(const char *buf, int *i, t_room *room)
+int			ft_register_coord(const char *buf, int *i, t_room *room,
+				const char limit)
 {
-	long	x;
+	long	coord;
 	int		diff;
 	int		len;
 
 	if (*buf == '\0' || room == NULL)
 		return (FAIL);
-	diff = ft_strcspn(buf, " ");
-	x = ft_atol_base(buf, 10);
-	len = ft_intlen(x);
+	diff = ft_strcspn(buf, &limit);
+	coord = ft_atol_base(buf, 10);
+	len = ft_intlen(coord);
 	if (diff - len != 0)
 		return (FAIL);
-	if (x < -2147483648 || x > 2147483647)
+	if (coord < -2147483648 || coord > 2147483647)
 		return (FAIL);
-	room->x = x;
-	*i += len + 1;
-	return (SUCCESS);
-}
-
-int			ft_register_y(const char *buf, int *i, t_room *room)
-{
-	long	y;
-	int		diff;
-	int		len;
-
-	if (*buf == '\0' || room == NULL)
-		return (FAIL);
-	diff = ft_strcspn(buf, "\n");
-	y = ft_atol_base(buf, 10);
-	len = ft_intlen(y);
-	if (diff - len != 0)
-		return (FAIL);
-	if (y < -2147483648 || y > 2147483647)
-		return (FAIL);
-	room->y = y;
-	*i += len;
+	if (limit == ' ')
+	{
+		room->x = coord;
+		*i += len + 1;
+	}
+	else
+	{
+		room->y = coord;
+		*i += len;
+	}
 	return (SUCCESS);
 }

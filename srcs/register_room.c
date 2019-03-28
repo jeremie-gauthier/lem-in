@@ -82,11 +82,11 @@ int			ft_register_room(const char *buf, int *i, t_parser *data,
 		return (clean_quit(NULL, &room));
 	if (!(btree_insert_data(graph, (void*)room, cmpf)))
 		return (clean_quit(NULL, &room));
-	if (!(ft_register_x(&buf[*i], i, room)))
+	if (!(ft_register_coord(&buf[*i], i, room, ' ')))
 		return (FAIL);
 	if (buf[*i] == ' ')
 		return (FAIL);
-	if (!(ft_register_y(&buf[*i], i, room)))
+	if (!(ft_register_coord(&buf[*i], i, room, '\n')))
 		return (FAIL);
 	ft_register_start_end(data, room);
 	return (SUCCESS);
