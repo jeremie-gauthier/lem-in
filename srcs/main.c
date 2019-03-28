@@ -11,10 +11,21 @@ int		clean_quit(t_btree **graph, const int ret)
 void	print_btree(void *data)
 {
 	t_room	*room;
+	t_list	*tmp;
+	t_room	*tmproom;
 
 	room = (t_room*)data;
-	ft_printf("NAME : %s || X : %3i || Y : %3i || STATUS : %i\n",
+	tmp = room->nghbr;
+	ft_printf("NAME : %s || X : %3i || Y : %3i || STATUS : %i || ",
 			room->name, room->x, room->y, room->status);
+	ft_printf("VOISINS => ");
+	while (tmp)
+	{
+		tmproom = (t_room*)tmp->content;
+		ft_printf("%s ", tmproom->name);
+		tmp = tmp->next;
+	}
+	ft_printf("\n");
 }
 
 int		main(int argc, char **argv)

@@ -18,3 +18,39 @@ int	ft_btreecmp(const void *struct1, const void *struct2)
 	}
 	return ((int)*name1 - (int)*name2);
 }
+
+int	ft_btreeccmp_hyphen(const void *struc, const void *str)
+{
+	const t_room	*room;
+	const char		*name1;
+	const char		*name2;
+
+	room = struc;
+	name1 = room->name;
+	name2 = str;
+	while (*name1 && *name2 && *name1 == *name2
+				&& *name2 != '-' && *(name2 + 1) != '-')
+	{
+		name1++;
+		name2++;
+	}
+	return ((int)*name1 - (int)*name2);
+}
+
+int	ft_btreeccmp_newline(const void *struc, const void *str)
+{
+	const t_room	*room;
+	const char		*name1;
+	const char		*name2;
+
+	room = struc;
+	name1 = room->name;
+	name2 = str;
+	while (*name1 && *name2 && *name1 == *name2
+				&& *name2 != '\n' && *(name2 + 1) != '\n')
+	{
+		name1++;
+		name2++;
+	}
+	return ((int)*name1 - (int)*name2);
+}

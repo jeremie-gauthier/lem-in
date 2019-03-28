@@ -55,12 +55,15 @@ int				ft_register_room(const char *buf, int *i, t_parser *data, t_btree **graph
 int				ft_register_com(const char *buf, int *i, t_parser *data);
 int				ft_register_coord(const char *buf, int *i, t_room *room,
 					const char limit);
+int				ft_register_path(const char *buf, int *i, t_btree **graph);
 
 /*
 **	B_tree tools functions
 */
 
 int				ft_btreecmp(const void *struct1, const void *struct2);
+int				ft_btreeccmp_hyphen(const void *struc, const void *str);
+int				ft_btreeccmp_newline(const void *struc, const void *str);
 int				ft_strccmp(const char *s1, const char *s2, const char limit);
 
 /*
