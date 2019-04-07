@@ -32,7 +32,7 @@ int		ft_buf_parser(const char *buf, t_parser *data, t_btree **graph)
 	while (buf[i])
 	{
 		// ft_printf("%i & %i & |%s|\n", data->steps, i, &buf[i]);
-		if (ft_strncmp(&buf[i], COMMENTARY, 1) == 0)
+		if (ft_strncmp(&buf[i], COMMENTARY, 1) == IDENTICAL)
 			ft_register_com(&buf[i], &i, data);
 		else
 		{

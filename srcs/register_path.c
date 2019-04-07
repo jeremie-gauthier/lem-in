@@ -9,10 +9,10 @@ static int		ft_add_neighbours(t_room *nghbr1, t_room *nghbr2)
 {
 	t_list	*tmp;
 
-	if (!(tmp = ft_lstnew((void*)nghbr2, sizeof(nghbr2))))
+	if (!(tmp = ft_lstnew_addr((void*)nghbr2)))
 		return (0);
 	ft_lstadd(&nghbr1->nghbr, tmp);
-	if (!(tmp = ft_lstnew((void*)nghbr1, sizeof(nghbr1))))
+	if (!(tmp = ft_lstnew_addr((void*)nghbr1)))
 		return (0);
 	ft_lstadd(&nghbr2->nghbr, tmp);
 	return (1);

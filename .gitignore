@@ -4,3 +4,6 @@ a.out*
 *.dSYM
 .vscode*
 temporary
+lem-in
+libft/temporary
+libft/temporary/*.o
