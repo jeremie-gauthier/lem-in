@@ -56,7 +56,7 @@ int		ft_buf_parser(const char *buf, t_parser *data, t_btree **graph)
 				if (ft_strcpos(' ', &buf[i], '\n')
 						|| !ft_strcpos('-', &buf[i], '\n'))
 					return (FAIL);
-				if (!(ft_register_path(buf, &i, graph)))
+				if (!(ft_register_path(buf, &i, graph, data)))
 					return (FAIL);
 			}
 		}

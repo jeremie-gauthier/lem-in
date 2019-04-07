@@ -20,6 +20,7 @@
 # include <stdarg.h>
 
 # define BUFF_SIZE	32
+# define IDENTICAL	0
 # define ALL_FLAGS	"Llh+- .#0123456789,*"
 # define ALL_CONV	"cspdiouxXbf%"
 # define REDIRECT	"DIOU"

@@ -9,9 +9,13 @@
 # define COMMENTARY	"#"
 # define START_COM	"##start\n"
 # define END_COM	"##end\n"
+# define START_STR	"start"
+# define END_STR	"end"
 # define LAMBDA		0
 # define START		1
 # define END		2
+# define RIGHT		0
+# define LEFT		1
 
 typedef struct	s_room
 {
@@ -55,7 +59,7 @@ int				ft_register_room(const char *buf, int *i, t_parser *data, t_btree **graph
 int				ft_register_com(const char *buf, int *i, t_parser *data);
 int				ft_register_coord(const char *buf, int *i, t_room *room,
 					const char limit);
-int				ft_register_path(const char *buf, int *i, t_btree **graph);
+int				ft_register_path(const char *buf, int *i, t_btree **graph, t_parser *data);
 
 /*
 **	B_tree tools functions
