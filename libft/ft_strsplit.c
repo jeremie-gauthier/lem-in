@@ -33,27 +33,6 @@ static size_t	count_words(char const *s, char c)
 	return (words);
 }
 
-static char		*ft_strcdup(char const *s, char c)
-{
-	size_t	len;
-	size_t	i;
-	char	*dup;
-
-	len = 0;
-	i = 0;
-	while (s[len] && s[len] != c)
-		len++;
-	if (!(dup = (char*)malloc(sizeof(*dup) * (len + 1))))
-		return (NULL);
-	while (i < len)
-	{
-		dup[i] = s[i];
-		i++;
-	}
-	dup[i] = '\0';
-	return (dup);
-}
-
 char			**ft_strsplit(char const *s, char c)
 {
 	size_t	i;

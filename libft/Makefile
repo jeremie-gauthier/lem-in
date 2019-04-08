@@ -81,6 +81,7 @@ SRCS	=	ft_memset.c		\
 			ft_strncasecmp.c	\
 			ft_strcasestr.c	\
 			ft_strndup.c	\
+			ft_strcdup.c	\
 			ft_printtab.c	\
 			ft_strrev.c	\
 			ft_strlcpy.c	\

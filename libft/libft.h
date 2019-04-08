@@ -135,6 +135,7 @@ char				*ft_strncpy(char *dest, const char *src, size_t n);
 size_t				ft_strspn(const char *s, const char *accept);
 size_t				ft_strcspn(const char *s, const char *reject);
 void				ft_bzero(void *s, size_t n);
+char				*ft_strcdup(const char *str, const char limit);
 
 /*
 **	Memory functions

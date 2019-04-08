@@ -13,7 +13,7 @@ static int	clean_quit(char **str, t_room **room)
 **	It also checks for the validity of the room's name ('-' not included)
 */
 
-static char	*ft_strcdup(const char *buf, int *i, const char limit)
+static char	*ft_strcdup_room(const char *buf, int *i, const char limit)
 {
 	int		len;
 	char	*new;
@@ -72,7 +72,7 @@ int			ft_register_room(const char *buf, int *i, t_parser *data,
 	int		(*cmpf)(const void *, const void *);	
 
 	cmpf = &ft_btreecmp;
-	if (!(name = ft_strcdup(&buf[*i], i, ' ')))
+	if (!(name = ft_strcdup_room(&buf[*i], i, ' ')))
 		return (FAIL);
 	if (!(room = init_room(name, data->status)))
 		return (clean_quit(&name, NULL));

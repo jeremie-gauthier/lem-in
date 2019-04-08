@@ -53,21 +53,29 @@ int			ft_buf_parser(const char *buf, t_parser *data, t_btree **graph)
 	int		i;
 
 	i = 0;
+	if (data->last_line != NULL)
+		if (!(ft_restore_data(buf, data, &i)))
+			return (FAIL);
+	// i++;
+	ft_printf(">>%s|&%i\n", &buf[i], i);
 	while (buf[i])
 	{
-		if (!ft_strcpos('\n', &buf[i], '\0'))
+		if (data->ret == BUF_SIZE && !ft_strcpos('\n', &buf[i], '\0'))
 		{
-			if (!(ft_save_data(&buf[i], data)))
+			if (!(ft_save_data(&buf[i], data, &i)))
 				return (FAIL);
 		}
-		if (ft_strncmp(&buf[i], COMMENTARY, 1) == IDENTICAL)
-			ft_register_com(&buf[i], &i, data);
 		else
 		{
-			if (!(ft_room_parser(buf, data, graph, &i)))
-				return (FAIL);
+			if (ft_strncmp(&buf[i], COMMENTARY, 1) == IDENTICAL)
+				ft_register_com(&buf[i], &i, data);
+			else
+			{
+				if (!(ft_room_parser(buf, data, graph, &i)))
+					return (FAIL);
+			}
+			i++;
 		}
-		i++;
 	}
 	return (1);
 }
