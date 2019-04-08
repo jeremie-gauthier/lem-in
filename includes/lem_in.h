@@ -35,8 +35,8 @@ typedef struct	s_parser
 	int		ret		: 27;
 	t_room	*start;
 	t_room	*end;
-	char	*last_name_known;
 	char	*last_line;
+	int		end_of_file;
 }				t_parser;
 
 /*

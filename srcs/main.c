@@ -53,7 +53,7 @@ int		main(int argc, char **argv)
 			return (clean_quit(&graph, 1));
 		// AFFICHAGE DES DONNEES
 		// btree_apply_infix_lr(graph, print_btree);
-		ft_printf("{green}OK =){reset}\n");
+		ft_printf("{green}OK =){reset}\n"); //
 		clean_quit(&graph, 0);
 	}
 	else
