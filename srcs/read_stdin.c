@@ -20,7 +20,7 @@ int			ft_read_stdin(t_btree **graph, t_parser *data)
 	while ((data->ret = read(0, buf, BUF_SIZE)) > 0)
 	{
 		buf[data->ret] = '\0';
-		ft_printf("{blue}%s{reset}", buf); //remove blue
+		ft_printf("%s", buf);
 		i = 0;
 		if (data->ants == -1)
 			if (!(ft_register_ants(&buf[i], &i, data)))

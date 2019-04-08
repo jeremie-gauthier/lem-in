@@ -13,6 +13,7 @@ t_parser	*init_parser(void)
 	new->start = NULL;
 	new->end = NULL;
 	new->last_line = NULL;
+	new->malloced = false;
 	return (new);
 }
 

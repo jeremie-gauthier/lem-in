@@ -8,7 +8,7 @@ int		clean_quit(t_btree **graph, const int ret)
 	while ((red = read(0, buf, BUF_SIZE)))
 	{
 		buf[red] = '\0';
-		ft_printf("{blue}%s{reset}", buf); //remove blue
+		ft_printf("%s", buf);
 	}
 	if (ret == 1 && red == 0)
 		ft_printf("\n");
@@ -52,7 +52,7 @@ int		main(int argc, char **argv)
 		if (!(ft_read_stdin(&graph, data)))
 			return (clean_quit(&graph, 1));
 		// AFFICHAGE DES DONNEES
-		// btree_apply_infix_lr(graph, print_btree);
+		btree_apply_infix_lr(graph, print_btree);
 		ft_printf("{green}OK =){reset}\n"); //
 		clean_quit(&graph, 0);
 	}

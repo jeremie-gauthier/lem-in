@@ -3,7 +3,7 @@
 
 # include "../libft/libft.h"
 
-# define BUF_SIZE	32
+# define BUF_SIZE	2
 # define FAIL		0
 # define SUCCESS	1
 # define COMMENTARY	"#"
@@ -36,6 +36,7 @@ typedef struct	s_parser
 	t_room	*start;
 	t_room	*end;
 	char	*last_line;
+	t_bool	malloced;
 }				t_parser;
 
 /*
@@ -52,15 +53,14 @@ void			btree_deep_del(t_btree **root);
 */
 
 int				ft_read_stdin(t_btree **graph, t_parser *data);
-int				ft_buf_parser(const char *buf, t_parser * data, t_btree **graph);
+int				ft_buf_parser(char *buf, t_parser * data, t_btree **graph);
 int				ft_register_ants(const char *buf, int *i, t_parser *data);
 int				ft_register_room(const char *buf, int *i, t_parser *data, t_btree **graph);
 int				ft_register_com(const char *buf, int *i, t_parser *data);
 int				ft_register_coord(const char *buf, int *i, t_room *room,
 					const char limit);
 int				ft_register_path(const char *buf, int *i, t_btree **graph, t_parser *data);
-int		ft_save_data(const char *buf, t_parser *data, int *i);
-int		ft_restore_data(const char *buf, t_parser *data, int *i);
+int				ft_save_data(const char *buf, t_parser *data, int *i);
 
 /*
 **	B_tree tools functions

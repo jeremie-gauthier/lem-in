@@ -1,5 +1,15 @@
 #include "../includes/lem_in.h"
 
+static int	clean_quit(char **buf, t_parser *data, const int ret)
+{
+	if (data->malloced == true)
+	{
+		ft_strdel(buf);
+		data->malloced = false;
+	}
+	return (ret);
+}
+
 static int	ft_strcpos(const char c, const char *str, const char limit)
 {
 	int i;
@@ -48,34 +58,38 @@ static int	ft_room_parser(const char *buf, t_parser *data, t_btree **graph, int 
 **	In the second step (data->steps == 1) we connecting the rooms between them.
 */
 
-int			ft_buf_parser(const char *buf, t_parser *data, t_btree **graph)
+int			ft_buf_parser(char *buf, t_parser *data, t_btree **graph)
 {
 	int		i;
+	char	*tmp;
 
-	i = 0;
+	tmp = buf;
 	if (data->last_line != NULL)
-		if (!(ft_restore_data(buf, data, &i)))
-			return (FAIL);
-	// i++;
-	ft_printf(">>%s|&%i\n", &buf[i], i);
-	while (buf[i])
 	{
-		if (data->ret == BUF_SIZE && !ft_strcpos('\n', &buf[i], '\0'))
+		if (!(tmp = ft_strjoin(data->last_line, tmp)))
+			return (clean_quit(NULL, data, FAIL));
+		data->malloced = true;
+		ft_strdel(&data->last_line);
+	}
+	i = 0;
+	while (tmp[i])
+	{
+		if (data->ret == BUF_SIZE && !ft_strcpos('\n', &tmp[i], '\0'))
 		{
-			if (!(ft_save_data(&buf[i], data, &i)))
-				return (FAIL);
+			if (!(ft_save_data(&tmp[i], data, &i)))
+				return (clean_quit(&tmp, data, FAIL));
 		}
 		else
 		{
-			if (ft_strncmp(&buf[i], COMMENTARY, 1) == IDENTICAL)
-				ft_register_com(&buf[i], &i, data);
+			if (ft_strncmp(&tmp[i], COMMENTARY, 1) == IDENTICAL)
+				ft_register_com(&tmp[i], &i, data);
 			else
 			{
-				if (!(ft_room_parser(buf, data, graph, &i)))
-					return (FAIL);
+				if (!(ft_room_parser(tmp, data, graph, &i)))
+					return (clean_quit(&tmp, data, FAIL));
 			}
 			i++;
 		}
 	}
-	return (1);
+	return (clean_quit(&tmp, data, SUCCESS));
 }

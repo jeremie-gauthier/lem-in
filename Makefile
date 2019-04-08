@@ -11,8 +11,7 @@ SOURCES	=	main.c\
 			register_coord.c\
 			register_com.c\
 			register_path.c\
-			save_data.c\
-			restore_data.c
+			save_data.c
 
 DIR_C	=	srcs
 
