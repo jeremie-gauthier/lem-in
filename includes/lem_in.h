@@ -3,7 +3,7 @@
 
 # include "../libft/libft.h"
 
-# define BUF_SIZE	256
+# define BUF_SIZE	16
 # define FAIL		0
 # define SUCCESS	1
 # define COMMENTARY	"#"
@@ -59,6 +59,8 @@ int				ft_register_com(const char *buf, int *i, t_parser *data);
 int				ft_register_coord(const char *buf, int *i, t_room *room,
 					const char limit);
 int				ft_register_path(const char *buf, int *i, t_btree **graph, t_parser *data);
+int		ft_save_data(const char *buf, t_parser *data);
+int		ft_restore_data(const char *buf, t_parser *data);
 
 /*
 **	B_tree tools functions

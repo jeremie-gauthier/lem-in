@@ -55,6 +55,11 @@ int			ft_buf_parser(const char *buf, t_parser *data, t_btree **graph)
 	i = 0;
 	while (buf[i])
 	{
+		if (!ft_strcpos('\n', &buf[i], '\0'))
+		{
+			if (!(ft_save_data(&buf[i], data)))
+				return (FAIL);
+		}
 		if (ft_strncmp(&buf[i], COMMENTARY, 1) == IDENTICAL)
 			ft_register_com(&buf[i], &i, data);
 		else

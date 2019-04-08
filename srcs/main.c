@@ -8,7 +8,7 @@ int		clean_quit(t_btree **graph, const int ret)
 	while ((red = read(0, buf, BUF_SIZE)))
 	{
 		buf[red] = '\0';
-		ft_printf("%s", buf);
+		ft_printf("{blue}%s{reset}", buf); //remove blue
 	}
 	if (ret == 1 && red == 0)
 		ft_printf("\n");
