@@ -11,7 +11,10 @@ SOURCES	=	main.c\
 			register_coord.c\
 			register_com.c\
 			register_path.c\
-			save_data.c
+			save_data.c\
+			check_validity.c\
+			ft_fill_neighbours.c\
+			ft_lst_node_exists.c
 
 DIR_C	=	srcs
 

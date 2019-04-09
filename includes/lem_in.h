@@ -3,7 +3,7 @@
 
 # include "../libft/libft.h"
 
-# define BUF_SIZE	2
+# define BUF_SIZE	256
 # define FAIL		0
 # define SUCCESS	1
 # define COMMENTARY	"#"
@@ -61,6 +61,7 @@ int				ft_register_coord(const char *buf, int *i, t_room *room,
 					const char limit);
 int				ft_register_path(const char *buf, int *i, t_btree **graph, t_parser *data);
 int				ft_save_data(const char *buf, t_parser *data, int *i);
+t_bool			ft_check_validity(t_parser *data);
 
 /*
 **	B_tree tools functions
@@ -70,11 +71,16 @@ int				ft_btreecmp(const void *struct1, const void *struct2);
 int				ft_btreeccmp_hyphen(const void *struc, const void *str);
 int				ft_btreeccmp_newline(const void *struc, const void *str);
 int				ft_strccmp(const char *s1, const char *s2, const char limit);
+t_bool			ft_lst_node_exists(t_list *head, t_room *node);
+void			ft_fill_neighbours(t_list **head, t_list *to_add);
+// void			ft_lst_push_back(t_list **head, t_room *new);
 
 /*
 **	FOR TESTING PURPOSE
 */
 
-void		print_btree(void *data);
+void		print_btree(void *data); // in main.c
+void		print_list(t_list *head); // in check_validity.c
+
 
 #endif

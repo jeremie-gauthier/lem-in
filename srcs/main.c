@@ -51,6 +51,8 @@ int		main(int argc, char **argv)
 			return (FAIL);
 		if (!(ft_read_stdin(&graph, data)))
 			return (clean_quit(&graph, 1));
+		if (!(ft_check_validity(data)))
+			return (clean_quit(&graph, 1));
 		// AFFICHAGE DES DONNEES
 		btree_apply_infix_lr(graph, print_btree);
 		ft_printf("{green}OK =){reset}\n"); //
