@@ -21,7 +21,7 @@ void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 		tmp = (*alst)->next;
 		if (del)
 			del((*alst)->content, (*alst)->content_size);
-		ft_memdel(*alst);
+		ft_memdel((void*)&(*alst));
 		*alst = tmp;
 	}
 	*alst = NULL;

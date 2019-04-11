@@ -14,7 +14,8 @@ SOURCES	=	main.c\
 			save_data.c\
 			check_validity.c\
 			ft_fill_neighbours.c\
-			ft_lst_node_exists.c
+			ft_lst_node_exists.c\
+			breadth_first_search.c
 
 DIR_C	=	srcs
 

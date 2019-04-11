@@ -29,6 +29,18 @@ t_room		*init_room(char *name, const int status)
 	new->filled = false;
 	new->nghbr = NULL;
 	new->status = status;
+	new->ancestor = NULL;
+	return (new);
+}
+
+t_edge		*init_edge(t_room *room)
+{
+	t_edge	*new;
+
+	if (!(new = (t_edge*)malloc(sizeof(*new))))
+		return (NULL);
+	new->room = room;
+	new->flow = 0;
 	return (new);
 }
 

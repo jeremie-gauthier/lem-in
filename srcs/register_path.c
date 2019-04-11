@@ -8,11 +8,16 @@
 static int		ft_add_neighbours(t_room *nghbr1, t_room *nghbr2)
 {
 	t_list	*tmp;
+	t_edge	*edge;
 
-	if (!(tmp = ft_lstnew_addr((void*)nghbr2)))
+	if (!(edge = init_edge(nghbr2)))
+		return (FAIL);
+	if (!(tmp = ft_lstnew_addr((void*)edge)))
 		return (0);
 	ft_lstadd(&nghbr1->nghbr, tmp);
-	if (!(tmp = ft_lstnew_addr((void*)nghbr1)))
+	if (!(edge = init_edge(nghbr1)))
+		return (FAIL);
+	if (!(tmp = ft_lstnew_addr((void*)edge)))
 		return (0);
 	ft_lstadd(&nghbr2->nghbr, tmp);
 	return (1);

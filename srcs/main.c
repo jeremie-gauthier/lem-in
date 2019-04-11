@@ -23,6 +23,7 @@ void	print_btree(void *data)
 	t_room	*room;
 	t_list	*tmp;
 	t_room	*tmproom;
+	t_edge	*edge;
 
 	room = (t_room*)data;
 	tmp = room->nghbr;
@@ -31,8 +32,9 @@ void	print_btree(void *data)
 	ft_printf("VOISINS => ");
 	while (tmp)
 	{
-		tmproom = (t_room*)tmp->content;
-		ft_printf("%s ", tmproom->name);
+		edge = (t_edge*)tmp->content;
+		tmproom = (t_room*)edge->room;
+		ft_printf("%s:%i ", tmproom->name, edge->flow);
 		tmp = tmp->next;
 	}
 	ft_printf("\n");
@@ -56,6 +58,7 @@ int		main(int argc, char **argv)
 		// AFFICHAGE DES DONNEES
 		btree_apply_infix_lr(graph, print_btree);
 		ft_printf("{green}OK =){reset}\n"); //
+		ft_bfs(data);
 		clean_quit(&graph, 0);
 	}
 	else

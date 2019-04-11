@@ -19,13 +19,20 @@
 
 typedef struct	s_room
 {
-	char	*name;
-	int		x;
-	int		y;
-	t_bool	filled;
-	t_list	*nghbr;
-	int		status;
+	char			*name;
+	int				x;
+	int				y;
+	t_bool			filled;
+	t_list			*nghbr;
+	int				status;
+	struct s_room	*ancestor;
 }				t_room;
+
+typedef struct	s_edge
+{
+	t_room	*room;
+	int		flow;
+}				t_edge;
 
 typedef struct	s_parser
 {
@@ -45,6 +52,7 @@ typedef struct	s_parser
 
 t_parser		*init_parser(void);
 t_room			*init_room(char *name, const int status);
+t_edge			*init_edge(t_room *room);
 void			del_room(t_room **room);
 void			btree_deep_del(t_btree **root);
 
@@ -73,6 +81,8 @@ int				ft_btreeccmp_newline(const void *struc, const void *str);
 int				ft_strccmp(const char *s1, const char *s2, const char limit);
 t_bool			ft_lst_node_exists(t_list *head, t_room *node);
 int				ft_fill_neighbours(t_list **head, t_list *to_add);
+t_bool			ft_bfs(t_parser *data);
+
 // void			ft_lst_push_back(t_list **head, t_room *new);
 
 /*
