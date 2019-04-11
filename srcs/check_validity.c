@@ -28,10 +28,14 @@ static t_bool	ft_path_exists(t_parser *data)
 	{
 		room = current->content;
 		if (ft_lst_node_exists(room->nghbr, data->end))
+		{
+			ft_lstdel(&neighbours, NULL);
 			return (true);
+		}
 		ft_fill_neighbours(&neighbours, room->nghbr);
 		current = current->next;
 	}
+	ft_lstdel(&neighbours, NULL);
 	return (false);
 }
 

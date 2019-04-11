@@ -72,7 +72,7 @@ int				ft_btreeccmp_hyphen(const void *struc, const void *str);
 int				ft_btreeccmp_newline(const void *struc, const void *str);
 int				ft_strccmp(const char *s1, const char *s2, const char limit);
 t_bool			ft_lst_node_exists(t_list *head, t_room *node);
-void			ft_fill_neighbours(t_list **head, t_list *to_add);
+int				ft_fill_neighbours(t_list **head, t_list *to_add);
 // void			ft_lst_push_back(t_list **head, t_room *new);
 
 /*
