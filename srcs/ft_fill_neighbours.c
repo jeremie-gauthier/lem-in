@@ -1,4 +1,4 @@
-#include "lem_in.h"
+#include "../includes/lem_in.h"
 
 int		ft_fill_neighbours(t_list **head, t_list *to_add)
 {

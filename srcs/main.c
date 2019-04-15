@@ -56,7 +56,8 @@ int		main(int argc, char **argv)
 		if (!(ft_check_validity(data)))
 			return (clean_quit(&graph, 1));
 		// AFFICHAGE DES DONNEES
-		ft_bfs(data);
+		if (!(edmondkarp(data)))
+			return (clean_quit(&graph, 1));
 		btree_apply_infix_lr(graph, print_btree);
 		ft_printf("{green}OK =){reset}\n"); //
 		clean_quit(&graph, 0);

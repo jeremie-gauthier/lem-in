@@ -1,4 +1,4 @@
-#include "lem_in.h"
+#include "../includes/lem_in.h"
 
 static int	ft_bfs_enqueue(t_room *current, t_list **queue, t_list *neighbours, t_parser *data)
 {

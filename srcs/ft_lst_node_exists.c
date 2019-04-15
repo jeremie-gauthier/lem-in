@@ -1,4 +1,4 @@
-#include "lem_in.h"
+#include "../includes/lem_in.h"
 
 t_bool	ft_lst_edge_exists(t_list *head, t_room *node)
 {
