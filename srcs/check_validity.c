@@ -27,7 +27,7 @@ static t_bool	ft_path_exists(t_parser *data)
 	while (current)
 	{
 		room = current->content;
-		if (ft_lst_node_exists(room->nghbr, data->end))
+		if (ft_lst_edge_exists(room->nghbr, data->end))
 		{
 			ft_lstdel(&neighbours, NULL);
 			return (true);

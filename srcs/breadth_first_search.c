@@ -6,13 +6,16 @@ static int	ft_bfs_enqueue(t_room *current, t_list **queue, t_list *neighbours, t
 	t_list	*neighbour;
 	t_room	*tmp;
 
-	ft_putendl("TEST\n");
 	while (neighbours)
 	{
 		edge = neighbours->content;
+		tmp = edge->room;
+		// print_list(*queue);
+		// ft_printf("ENQUEUE %s\n", edge->room->name);
 		if (edge->flow == 0 && !ft_lst_node_exists(*queue, tmp))//&& (*queue)->ancestor == NULL)
 		{
-			tmp = edge->room;
+			// ft_printf("c : %s | v : %s\n", current->name, tmp->name);
+			// if (current != data->start)
 			tmp->ancestor = current;
 			if (tmp == data->end)
 				return (1);
@@ -37,6 +40,7 @@ t_bool		ft_bfs(t_parser *data)
 	while (current)
 	{
 		room = current->content;
+		// ft_printf("CURRENT %s\n", room->name);
 		if (ft_bfs_enqueue(room, &queue, room->nghbr, data) == 1)
 			return (true);
 		current = current->next;

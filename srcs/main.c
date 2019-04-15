@@ -27,8 +27,8 @@ void	print_btree(void *data)
 
 	room = (t_room*)data;
 	tmp = room->nghbr;
-	ft_printf("NAME : %s || X : %3i || Y : %3i || STATUS : %i || ",
-			room->name, room->x, room->y, room->status);
+	ft_printf("NAME : %s || X : %3i || Y : %3i || STATUS : %i || ANCESTOR : %s || ",
+			room->name, room->x, room->y, room->status, (room->ancestor == NULL) ? NULL : room->ancestor->name);
 	ft_printf("VOISINS => ");
 	while (tmp)
 	{
@@ -56,9 +56,9 @@ int		main(int argc, char **argv)
 		if (!(ft_check_validity(data)))
 			return (clean_quit(&graph, 1));
 		// AFFICHAGE DES DONNEES
+		ft_bfs(data);
 		btree_apply_infix_lr(graph, print_btree);
 		ft_printf("{green}OK =){reset}\n"); //
-		ft_bfs(data);
 		clean_quit(&graph, 0);
 	}
 	else
