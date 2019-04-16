@@ -5,6 +5,8 @@ void	print_list(t_list *head)
 	t_room	*tmp;
 	int		i;
 
+	if (head == NULL)
+		ft_printf("list point on NULL\n");
 	i = 0;
 	while (head)
 	{

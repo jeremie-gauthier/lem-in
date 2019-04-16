@@ -22,7 +22,6 @@ t_bool	ft_lst_node_exists(t_list *head, t_room *node)
 
 	if (head == NULL || node == NULL)
 		return (false);
-	// ft_printf("EXISTS %s\n", node->name);
 	while (head)
 	{
 		tmp = head->content;

@@ -46,7 +46,17 @@ t_edge		*init_edge(t_room *room)
 
 void		del_room(t_room **room)
 {
+	t_list	*current;
+	t_list	*tmp;
+
 	ft_strdel(&(*room)->name);
+	current = (*room)->nghbr;
+	while (current)
+	{
+		tmp = current->next;
+		ft_memdel((void*)current);
+		current = tmp;
+	}
 	ft_lstdel(&(*room)->nghbr, NULL);
 	ft_memdel((void*)room);
 }
