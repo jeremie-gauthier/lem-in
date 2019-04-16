@@ -60,8 +60,8 @@ static int	ft_room_parser(const char *buf, t_parser *data, t_btree **graph, int 
 
 int			ft_buf_parser(char *buf, t_parser *data, t_btree **graph)
 {
-	int		i;
 	char	*tmp;
+	int		i;
 
 	tmp = buf;
 	if (data->last_line != NULL)

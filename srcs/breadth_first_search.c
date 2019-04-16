@@ -9,8 +9,8 @@ static t_bool	clean_quit(t_list **queue, t_bool ret)
 static int		ft_bfs_enqueue(t_room *current, t_list **queue, t_list *neighbours, t_parser *data)
 {
 	t_edge	*edge;
-	t_list	*neighbour;
 	t_room	*tmp;
+	t_list	*neighbour;
 
 	while (neighbours)
 	{

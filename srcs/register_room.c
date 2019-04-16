@@ -67,8 +67,8 @@ static void	ft_register_start_end(t_parser *data, t_room *room)
 int			ft_register_room(const char *buf, int *i, t_parser *data,
 				t_btree **graph)
 {
-	char	*name;
 	t_room	*room;
+	char	*name;
 	int		(*cmpf)(const void *, const void *);	
 
 	cmpf = &ft_btreecmp;

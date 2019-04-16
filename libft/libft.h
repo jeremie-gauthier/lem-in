@@ -59,6 +59,9 @@ typedef struct		s_buf
 
 typedef struct		s_flags
 {
+	int				prc;
+	int				pad;
+	char			c;
 	unsigned short	hh	: 1;
 	unsigned short	h	: 1;
 	unsigned short	l	: 1;
@@ -71,9 +74,6 @@ typedef struct		s_flags
 	unsigned short	sp	: 1;
 	unsigned short	com	: 1;
 	unsigned short	base: 5;
-	int				prc;
-	int				pad;
-	char			c;
 }					t_flags;
 
 typedef enum		e_bool
@@ -91,22 +91,22 @@ typedef struct		s_list
 
 typedef struct		s_stack
 {
-	int				nb;
 	struct s_stack	*next;
+	int				nb;
 }					t_stack;
 
 typedef struct		s_file
 {
-	int				fd;
-	char			*str;
 	struct s_file	*next;
+	char			*str;
+	int				fd;
 }					t_file;
 
 typedef struct		s_btree
 {
-	void			*data;
 	struct s_btree	*left;
 	struct s_btree	*right;
+	void			*data;
 	int				height;
 }					t_btree;
 
