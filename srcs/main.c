@@ -1,6 +1,6 @@
 #include "../includes/lem_in.h"
 
-int		clean_quit(t_btree **graph, const int ret)
+int		clean_quit(t_btree **graph, t_parser **data, const int ret)
 {
 	char	buf[BUF_SIZE + 1];
 	int		red;
@@ -14,6 +14,7 @@ int		clean_quit(t_btree **graph, const int ret)
 		ft_printf("\n");
 	if (ret == 1)
 		ft_printf("{red}ERROR{reset}\n");
+	ft_memdel((void*)data);
 	btree_deep_del(graph);
 	return (ret);
 }
@@ -52,15 +53,15 @@ int		main(int argc, char **argv)
 		if (!(data = init_parser()))
 			return (FAIL);
 		if (!(ft_read_stdin(&graph, data)))
-			return (clean_quit(&graph, 1));
+			return (clean_quit(&graph, &data, 1));
 		if (!(ft_check_validity(data)))
-			return (clean_quit(&graph, 1));
+			return (clean_quit(&graph, &data, 1));
 		// AFFICHAGE DES DONNEES
 		if (!(edmondkarp(data)))
-			return (clean_quit(&graph, 1));
+			return (clean_quit(&graph, &data, 1));
 		btree_apply_infix_lr(graph, print_btree);
 		ft_printf("{green}OK =){reset}\n"); //
-		clean_quit(&graph, 0);
+		clean_quit(&graph, &data, 0);
 	}
 	else
 		ft_printf("{red}[-] ERROR : wrong number of arguments{reset}\n");

@@ -31,7 +31,5 @@ int			ft_read_stdin(t_btree **graph, t_parser *data)
 	if (data->ret == 0 && *graph == NULL)
 		return (clean_quit(&data, FAIL));
 	ft_printf("\n");
-	//AFFICHAGE DU NOMBRE DE FOURMIS
-	// ft_printf("ants = %i\n", data->ants);
-	return (clean_quit(&data, SUCCESS));
+	return (SUCCESS);
 }
