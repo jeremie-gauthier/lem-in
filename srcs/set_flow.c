@@ -1,6 +1,6 @@
 #include "../includes/lem_in.h"
 
-static int	set_flow(t_list *neighbours, t_room *next)
+static int	set_flow(t_list *neighbours, t_room *current, t_room *next)
 {
 	t_edge	*edge;
 	t_room	*tmp;
@@ -12,6 +12,8 @@ static int	set_flow(t_list *neighbours, t_room *next)
 		if (tmp == next)
 		{
 			edge->flow = 1;
+			(void)current;
+			// collision_flow(edge, current, next);
 			return (SUCCESS);
 		}
 		neighbours = neighbours->next;
@@ -28,10 +30,12 @@ int			flow_direction(t_parser *data)
 	current = data->end->ancestor;
 	while (current != data->start)
 	{
-		if (!(set_flow(current->nghbr, tmp)))
+		if (!(set_flow(current->nghbr, current, tmp)))
 			return (FAIL);
 		tmp = current;
 		current = current->ancestor;
 	}
+	if (!(set_flow(current->nghbr, current, tmp)))
+		return (FAIL);
 	return (SUCCESS);
 }
