@@ -1,6 +1,17 @@
 #include "../includes/lem_in.h"
 
-static int	ft_intlen(long nb)
+static t_bool	numerical_coord(const char *buf, const char limit)
+{
+	while (*buf && *buf != limit)
+	{
+		if (*buf < '0' || *buf > '9')
+			return (false);
+		buf++;
+	}
+	return (true);
+}
+
+static int		ft_intlen(long nb)
 {
 	int	len;
 
@@ -11,14 +22,14 @@ static int	ft_intlen(long nb)
 	return (len);
 }
 
-int			ft_register_coord(const char *buf, int *i, t_room *room,
-				const char limit)
+int				ft_register_coord(const char *buf, int *i, t_room *room,
+					const char limit)
 {
 	long	coord;
 	int		diff;
 	int		len;
 
-	if (*buf == '\0' || room == NULL)
+	if (*buf == '\0' || room == NULL || !numerical_coord(buf, limit))
 		return (FAIL);
 	diff = ft_strcspn(buf, &limit);
 	coord = ft_atol_base(buf, 10);

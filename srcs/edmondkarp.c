@@ -11,6 +11,8 @@ int	edmondkarp(t_parser *data)
 			return (FAIL);
 		i++;
 	}
+	if (i == 0)
+		return (FAIL);
 	while (data->end->ant < data->ants)
 	{
 		push_colony(data);

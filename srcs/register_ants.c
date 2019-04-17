@@ -21,6 +21,8 @@ int		ft_register_ants(const char *buf, int *i, t_parser *data)
 		return (0);
 	diff = ft_strcspn(buf, "\n");
 	ants = ft_atol_base(buf, 10);
+	if (ants <= 0)
+		return (FAIL);
 	len = ft_intlen(ants);
 	if (diff - len != 0)
 		return (FAIL);

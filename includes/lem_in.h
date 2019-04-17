@@ -69,7 +69,6 @@ int				ft_register_coord(const char *buf, int *i, t_room *room,
 					const char limit);
 int				ft_register_path(const char *buf, int *i, t_btree **graph, t_parser *data);
 int				ft_save_data(const char *buf, t_parser *data, int *i);
-t_bool			ft_check_validity(t_parser *data);
 
 /*
 **	B_tree tools functions

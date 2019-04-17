@@ -81,7 +81,7 @@ int			ft_buf_parser(char *buf, t_parser *data, t_btree **graph)
 		}
 		else
 		{
-			if (ft_strncmp(&tmp[i], COMMENTARY, 1) == IDENTICAL)
+			if (tmp[i] == '#')
 				ft_register_com(&tmp[i], &i, data);
 			else
 			{

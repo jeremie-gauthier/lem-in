@@ -57,8 +57,6 @@ int		main(int argc, char **argv)
 			return (FAIL);
 		if (!(ft_read_stdin(&graph, data)))
 			return (clean_quit(&graph, &data, 1));
-		if (!(ft_check_validity(data)))
-			return (clean_quit(&graph, &data, 1));
 		if (!(edmondkarp(data)))
 			return (clean_quit(&graph, &data, 1));
 		// btree_apply_infix_lr(graph, print_btree);
