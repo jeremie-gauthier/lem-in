@@ -4,13 +4,16 @@ int		clean_quit(t_btree **graph, t_parser **data, const int ret)
 {
 	char	buf[BUF_SIZE + 1];
 	int		red;
+	t_bool	read_smtg;
 
+	read_smtg = false;
 	while ((red = read(0, buf, BUF_SIZE)))
 	{
 		buf[red] = '\0';
 		ft_printf("%s", buf);
+		read_smtg = true;
 	}
-	if (ret == 1 && red == 0)
+	if (ret == 1 && red == 0 && read_smtg == true)
 		ft_printf("\n");
 	if (ret == 1)
 		ft_printf("{red}ERROR{reset}\n");
@@ -56,11 +59,10 @@ int		main(int argc, char **argv)
 			return (clean_quit(&graph, &data, 1));
 		if (!(ft_check_validity(data)))
 			return (clean_quit(&graph, &data, 1));
-		// AFFICHAGE DES DONNEES
 		if (!(edmondkarp(data)))
 			return (clean_quit(&graph, &data, 1));
 		// btree_apply_infix_lr(graph, print_btree);
-		ft_printf("{green}OK =){reset}\n"); //
+		// ft_printf("{green}OK =){reset}\n"); //
 		clean_quit(&graph, &data, 0);
 	}
 	else

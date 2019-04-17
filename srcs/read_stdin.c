@@ -1,11 +1,5 @@
 #include "../includes/lem_in.h"
 
-static int	clean_quit(t_parser **data, int ret)
-{
-	ft_memdel((void*)data);
-	return (ret);
-}
-
 /*
 **	Reads and register informations from stdin.
 **	It reads chunks of BUF_SIZE bytes and clusterizes informations by
@@ -24,12 +18,12 @@ int			ft_read_stdin(t_btree **graph, t_parser *data)
 		i = 0;
 		if (data->ants == -1)
 			if (!(ft_register_ants(&buf[i], &i, data)))
-				return (clean_quit(&data, FAIL));
+				return (FAIL);
 		if (!(ft_buf_parser(&buf[i], data, graph)))
-			return (clean_quit(&data, FAIL));
+			return (FAIL);
 	}
 	if (data->ret == 0 && *graph == NULL)
-		return (clean_quit(&data, FAIL));
+		return (FAIL);
 	ft_printf("\n");
 	return (SUCCESS);
 }

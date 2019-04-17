@@ -40,8 +40,8 @@ typedef struct	s_parser
 	t_room	*end;
 	char	*last_line;
 	t_bool	malloced;
-	int		ret		: 10;
-	int		ants	: 17;
+	int		ants;
+	int		ret		: 27;
 	int		status	:  3;
 	int		steps	:  2;
 }				t_parser;
