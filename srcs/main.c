@@ -59,7 +59,7 @@ int		main(int argc, char **argv)
 		// AFFICHAGE DES DONNEES
 		if (!(edmondkarp(data)))
 			return (clean_quit(&graph, &data, 1));
-		btree_apply_infix_lr(graph, print_btree);
+		// btree_apply_infix_lr(graph, print_btree);
 		ft_printf("{green}OK =){reset}\n"); //
 		clean_quit(&graph, &data, 0);
 	}

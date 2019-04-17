@@ -22,10 +22,10 @@ typedef struct	s_room
 	struct s_room	*ancestor;
 	t_list			*nghbr;
 	char			*name;
-	t_bool			filled;
 	int				x;
 	int				y;
-	int				status;
+	int				ant	: 29;
+	int				status	:  3;
 }				t_room;
 
 typedef struct	s_edge
@@ -40,8 +40,8 @@ typedef struct	s_parser
 	t_room	*end;
 	char	*last_line;
 	t_bool	malloced;
-	int		ret		: 15;
-	int		ants	: 12;
+	int		ret		: 10;
+	int		ants	: 17;
 	int		status	:  3;
 	int		steps	:  2;
 }				t_parser;
@@ -85,7 +85,7 @@ int				ft_fill_neighbours(t_list **head, t_list *to_add);
 t_bool			ft_bfs(t_parser *data);
 int				flow_direction(t_parser *data);
 int				edmondkarp(t_parser *data);
-int				push_colony(t_room *room);
+int				push_colony(t_parser *data);
 
 // void			ft_lst_push_back(t_list **head, t_room *new);
 

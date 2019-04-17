@@ -17,7 +17,8 @@ SOURCES	=	main.c\
 			ft_lst_node_exists.c\
 			breadth_first_search.c\
 			set_flow.c\
-			edmondkarp.c
+			edmondkarp.c\
+			colony.c
 
 DIR_C	=	srcs
 

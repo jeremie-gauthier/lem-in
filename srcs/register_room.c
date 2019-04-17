@@ -58,7 +58,10 @@ static void	ft_register_start_end(t_parser *data, t_room *room)
 	if (data->status != LAMBDA)
 	{
 		if (data->status == START)
+		{
 			data->start = room;
+			data->start->ant = 1;
+		}
 		else if (data->status == END)
 			data->end = room;
 	}

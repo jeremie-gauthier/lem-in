@@ -26,7 +26,7 @@ t_room		*init_room(char *name, const int status)
 	new->name = name;
 	new->x = 0;
 	new->y = 0;
-	new->filled = false;
+	new->ant = 0;
 	new->nghbr = NULL;
 	new->status = status;
 	new->ancestor = NULL;
