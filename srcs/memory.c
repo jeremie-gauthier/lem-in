@@ -15,7 +15,6 @@ t_parser	*init_parser(void)
 	new->last_line = NULL;
 	new->malloced = false;
 	new->room_temoin = 0;
-	new->flow_temoin = 0;
 	return (new);
 }
 
@@ -44,7 +43,6 @@ t_edge		*init_edge(t_room *room)
 		return (NULL);
 	new->room = room;
 	new->flow = 0;
-	new->flow_used = 0;
 	return (new);
 }
 

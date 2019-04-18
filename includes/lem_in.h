@@ -33,7 +33,6 @@ typedef struct	s_edge
 {
 	t_room			*room;
 	int				flow;
-	unsigned int	flow_used : 1;
 }				t_edge;
 
 typedef struct	s_parser
@@ -43,11 +42,10 @@ typedef struct	s_parser
 	char			*last_line;
 	t_bool			malloced;
 	int				ants;
-	int				ret		: 25;
+	int				ret		: 26;
 	int				status	:  3;
 	int				steps	:  2;
 	unsigned int	room_temoin	:  1;
-	unsigned int	flow_temoin	:  1;
 }				t_parser;
 
 /*
