@@ -67,12 +67,12 @@ int				ft_register_path(const char *buf, int *i, t_btree **graph,
 
 	if (!(nghbr1 = ft_parse_room_name(&buf[*i], *graph, data, LEFT)))
 		return (FAIL);
-	*i += (ft_strcspn(&buf[*i], "-") + 1);
+	*i += (ft_strlimit(&buf[*i], '-') + 1);
 	if (buf[*i] == '-')
 		return (FAIL);
 	if (!(nghbr2 = ft_parse_room_name(&buf[*i], *graph, data, RIGHT)))
 		return (FAIL);
-	*i += (ft_strcspn(&buf[*i], "\n"));
+	*i += (ft_strlimit(&buf[*i], '\n'));
 	if (!(ft_add_neighbours(nghbr1, nghbr2)))
 		return (FAIL);
 	return (SUCCESS);

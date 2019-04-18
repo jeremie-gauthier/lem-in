@@ -28,6 +28,7 @@ static int	ft_strcpos(const char c, const char *str, const char limit)
 
 static int	ft_room_parser(const char *buf, t_parser *data, t_btree **graph, int *i)
 {
+	// ft_printf("\nBUF inside: |%s|\n", buf);
 	if (data->steps == 0)
 	{
 		if (!(ft_strcpos(' ', &buf[*i], '\n')))
@@ -86,7 +87,9 @@ int			ft_buf_parser(char *buf, t_parser *data, t_btree **graph)
 			else
 			{
 				if (!(ft_room_parser(tmp, data, graph, &i)))
+				{
 					return (clean_quit(&tmp, data, FAIL));
+				}
 			}
 			i++;
 		}

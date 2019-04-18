@@ -4,6 +4,7 @@ SOURCES	=	main.c\
 			memory.c\
 			ft_btreecmp.c\
 			ft_strccmp.c\
+			ft_strlimit.c\
 			read_stdin.c\
 			buf_parser.c\
 			register_ants.c\

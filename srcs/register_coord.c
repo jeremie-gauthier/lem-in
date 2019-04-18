@@ -31,7 +31,7 @@ int				ft_register_coord(const char *buf, int *i, t_room *room,
 
 	if (*buf == '\0' || room == NULL || !numerical_coord(buf, limit))
 		return (FAIL);
-	diff = ft_strcspn(buf, &limit);
+	diff = ft_strlimit(buf, limit);
 	coord = ft_atol_base(buf, 10);
 	len = ft_intlen(coord);
 	if (diff - len != 0)

@@ -3,7 +3,7 @@
 
 # include "../libft/libft.h"
 
-# define BUF_SIZE	256
+# define BUF_SIZE	4096
 # define FAIL		0
 # define SUCCESS	1
 # define COMMENTARY	"#"
@@ -24,26 +24,30 @@ typedef struct	s_room
 	char			*name;
 	int				x;
 	int				y;
-	int				ant	: 29;
+	int				ant		: 28;
 	int				status	:  3;
+	unsigned int	room_used	:  1;
 }				t_room;
 
 typedef struct	s_edge
 {
-	t_room	*room;
-	int		flow;
+	t_room			*room;
+	int				flow;
+	unsigned int	flow_used : 1;
 }				t_edge;
 
 typedef struct	s_parser
 {
-	t_room	*start;
-	t_room	*end;
-	char	*last_line;
-	t_bool	malloced;
-	int		ants;
-	int		ret		: 27;
-	int		status	:  3;
-	int		steps	:  2;
+	t_room			*start;
+	t_room			*end;
+	char			*last_line;
+	t_bool			malloced;
+	int				ants;
+	int				ret		: 25;
+	int				status	:  3;
+	int				steps	:  2;
+	unsigned int	room_temoin	:  1;
+	unsigned int	flow_temoin	:  1;
 }				t_parser;
 
 /*
@@ -78,6 +82,7 @@ int				ft_btreecmp(const void *struct1, const void *struct2);
 int				ft_btreeccmp_hyphen(const void *struc, const void *str);
 int				ft_btreeccmp_newline(const void *struc, const void *str);
 int				ft_strccmp(const char *s1, const char *s2, const char limit);
+int				ft_strlimit(const char *str, const char limit);
 t_bool			ft_lst_node_exists(t_list *head, t_room *node);
 t_bool			ft_lst_edge_exists(t_list *head, t_room *node);
 int				ft_fill_neighbours(t_list **head, t_list *to_add);

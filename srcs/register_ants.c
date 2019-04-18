@@ -19,7 +19,7 @@ int		ft_register_ants(const char *buf, int *i, t_parser *data)
 
 	if (*buf == '\0')
 		return (0);
-	diff = ft_strcspn(buf, "\n");
+	diff = ft_strlimit(buf, '\n');
 	ants = ft_atol_base(buf, 10);
 	if (ants <= 0)
 		return (FAIL);

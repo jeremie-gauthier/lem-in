@@ -7,12 +7,14 @@ int		clean_quit(t_btree **graph, t_parser **data, const int ret)
 	t_bool	read_smtg;
 
 	read_smtg = false;
-	while ((red = read(0, buf, BUF_SIZE)))
-	{
-		buf[red] = '\0';
-		ft_printf("%s", buf);
-		read_smtg = true;
-	}
+	red = 0;
+	(void)buf;
+	// while ((red = read(0, buf, BUF_SIZE)))
+	// {
+	// 	buf[red] = '\0';
+	// 	ft_printf("%s", buf);
+	// 	read_smtg = true;
+	// }
 	if (ret == 1 && red == 0 && read_smtg == true)
 		ft_printf("\n");
 	if (ret == 1)
