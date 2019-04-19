@@ -78,19 +78,19 @@ static int	ft_iterate_buffer(char *tmp, t_parser *data, t_btree **graph,
 {
 	if (data->ret == BUF_SIZE && !ft_strcpos('\n', &tmp[*i], '\0'))
 	{
-		if (!(ft_save_data(&tmp[*i], data, &i)))
+		if (!(ft_save_data(&tmp[*i], data, i)))
 			return (FAIL);
 	}
 	else
 	{
 		if (tmp[*i] == '#')
-			ft_register_com(&tmp[*i], &i, data);
+			ft_register_com(&tmp[*i], i, data);
 		else
 		{
-			if (!(ft_room_parser(tmp, data, graph, &i)))
+			if (!(ft_room_parser(tmp, data, graph, i)))
 				return (FAIL);
 		}
-		*i++;
+		(*i)++;
 	}
 	return (SUCCESS);
 }
