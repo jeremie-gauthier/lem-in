@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lem_in.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/19 14:06:32 by jergauth          #+#    #+#             */
+/*   Updated: 2019/04/19 14:06:34 by jergauth         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
@@ -24,9 +36,9 @@ typedef struct	s_room
 	char			*name;
 	int				x;
 	int				y;
-	int				ant		: 27;
-	int				status	:  3;
-	unsigned int	room_used	:  1;
+	int				ant : 27;
+	int				status : 3;
+	unsigned int	room_used : 1;
 	unsigned int	vertex_used : 1;
 	int				capacity;
 }				t_room;
@@ -44,10 +56,10 @@ typedef struct	s_parser
 	char			*last_line;
 	t_bool			malloced;
 	int				ants;
-	int				ret		: 26;
-	int				status	:  3;
-	int				steps	:  2;
-	unsigned int	room_temoin	:  1;
+	int				ret : 26;
+	int				status : 3;
+	int				steps : 2;
+	unsigned int	room_temoin : 1;
 }				t_parser;
 
 /*
@@ -65,13 +77,15 @@ void			btree_deep_del(t_btree **root);
 */
 
 int				ft_read_stdin(t_btree **graph, t_parser *data);
-int				ft_buf_parser(char *buf, t_parser * data, t_btree **graph);
+int				ft_buf_parser(char *buf, t_parser *data, t_btree **graph);
 int				ft_register_ants(const char *buf, int *i, t_parser *data);
-int				ft_register_room(const char *buf, int *i, t_parser *data, t_btree **graph);
+int				ft_register_room(const char *buf, int *i, t_parser *data,
+					t_btree **graph);
 int				ft_register_com(const char *buf, int *i, t_parser *data);
 int				ft_register_coord(const char *buf, int *i, t_room *room,
 					const char limit);
-int				ft_register_path(const char *buf, int *i, t_btree **graph, t_parser *data);
+int				ft_register_path(const char *buf, int *i, t_btree **graph,
+					t_parser *data);
 int				ft_save_data(const char *buf, t_parser *data, int *i);
 int				ft_strlimit(const char *str, const char limit);
 int				ft_strccmp(const char *s1, const char *s2, const char limit);
@@ -102,8 +116,7 @@ int				detect_vertex_separator(t_parser *data);
 **	FOR TESTING PURPOSE
 */
 
-void		print_btree(void *data); // in main.c
-void		print_list(t_list *head); // in check_validity.c
-
+void			print_btree(void *data); // in main.c
+void			print_list(t_list *head); // in check_validity.c
 
 #endif
