@@ -12,6 +12,33 @@
 
 #include "../includes/lem_in.h"
 
+static int		clean_quit(t_edge **edge1, t_edge **edge2, t_list **tmp, const int ret)
+{
+	if (edge1 && *edge1)
+		ft_memdel((void*)edge1);
+	if (edge2 && *edge2)
+		ft_memdel((void*)edge2);
+	if (tmp && *tmp)
+		ft_memdel((void*)tmp);
+	return (ret);
+}
+
+static t_bool	ft_connection_exists(t_room *room, t_edge *nghbr)
+{
+	t_list	*ngbr;
+	t_edge	*edge;
+
+	ngbr = room->nghbr;
+	while (ngbr)
+	{
+		edge = ngbr->content;
+		if (edge->room == nghbr->room)
+			return (true);
+		ngbr = ngbr->next;
+	}
+	return (false);
+}
+
 /*
 **	Creates a connection between two rooms by adding each room
 **	in the neighbours' list of each other.
@@ -26,22 +53,16 @@ static int		ft_add_neighbours(t_room *nghbr1, t_room *nghbr2)
 	if (!(edge2 = init_edge(nghbr2)))
 		return (FAIL);
 	if (!(tmp = ft_lstnew_addr((void*)edge2)))
-	{
-		ft_memdel((void*)&edge2);
-		return (FAIL);
-	}
+		return (clean_quit(&edge2, NULL, NULL, FAIL));
+	if (ft_connection_exists(nghbr1, edge2))
+		return (clean_quit(&edge2, NULL, &tmp, FAIL));
 	ft_lstadd(&nghbr1->nghbr, tmp);
 	if (!(edge1 = init_edge(nghbr1)))
-	{
-		ft_memdel((void*)&edge2);
-		return (FAIL);
-	}
+		return (clean_quit(&edge2, NULL, NULL, FAIL));
 	if (!(tmp = ft_lstnew_addr((void*)edge1)))
-	{
-		ft_memdel((void*)&edge2);
-		ft_memdel((void*)&edge1);
-		return (FAIL);
-	}
+		return (clean_quit(&edge2, &edge1, NULL, FAIL));
+	if (ft_connection_exists(nghbr2, edge1))
+		return (clean_quit(&edge2, &edge1, &tmp, FAIL));
 	ft_lstadd(&nghbr2->nghbr, tmp);
 	return (SUCCESS);
 }
