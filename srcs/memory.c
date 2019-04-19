@@ -32,6 +32,7 @@ t_room		*init_room(char *name, const int status)
 	new->status = status;
 	new->ancestor = NULL;
 	new->room_used = 0;
+	new->vertex_used = 0;
 	new->capacity = 0;
 	return (new);
 }
