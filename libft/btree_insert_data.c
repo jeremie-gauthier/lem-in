@@ -40,6 +40,30 @@ static void	insert_left(t_btree **root, void *x,
 	}
 }
 
+static int	btree_recurs_node(t_btree **root, void *x,
+				int (*cmpf)(const void *, const void *))
+{
+	if (cmpf(x, (*root)->data) >= 0)
+	{
+		if (!(btree_insert_data(&(*root)->right, x, cmpf)))
+			return (0);
+		if (btree_balance_factor(*root) == -2)
+			insert_right(root, x, cmpf);
+	}
+	else
+	{
+		if (cmpf(x, (*root)->data) < 0)
+		{
+			if (!(btree_insert_data(&(*root)->left, x, cmpf)))
+				return (0);
+			if (btree_balance_factor(*root) == 2)
+				insert_left(root, x, cmpf);
+		}
+	}
+	(*root)->height = btree_height(*root);
+	return (1);
+}
+
 int			btree_insert_data(t_btree **root, void *x,
 				int (*cmpf)(const void *, const void *))
 {
@@ -52,24 +76,8 @@ int			btree_insert_data(t_btree **root, void *x,
 	}
 	else
 	{
-		if (cmpf(x, (*root)->data) >= 0)
-		{
-			if (!(btree_insert_data(&(*root)->right, x, cmpf)))
-				return (0);
-			if (btree_balance_factor(*root) == -2)
-				insert_right(root, x, cmpf);
-		}
-		else
-		{
-			if (cmpf(x, (*root)->data) < 0)
-			{
-				if (!(btree_insert_data(&(*root)->left, x, cmpf)))
-					return (0);
-				if (btree_balance_factor(*root) == 2)
-					insert_left(root, x, cmpf);
-			}
-		}
-		(*root)->height = btree_height(*root);
+		if (!(btree_recurs_node(root, x, cmpf)))
+			return (0);
 	}
 	return (1);
 }

@@ -38,9 +38,9 @@ static int	ft_strcpos(const char c, const char *str, const char limit)
 	return (0);
 }
 
-static int	ft_room_parser(const char *buf, t_parser *data, t_btree **graph, int *i)
+static int	ft_room_parser(const char *buf, t_parser *data, t_btree **graph,
+				int *i)
 {
-	// ft_printf("\nBUF inside: |%s|\n", buf);
 	if (data->steps == 0)
 	{
 		if (!(ft_strcpos(' ', &buf[*i], '\n')))
@@ -50,8 +50,10 @@ static int	ft_room_parser(const char *buf, t_parser *data, t_btree **graph, int 
 				return (FAIL);
 		}
 		else
+		{
 			if (!(ft_register_room(buf, i, data, graph)))
 				return (FAIL);
+		}
 		data->status = LAMBDA;
 	}
 	if (data->steps == 1)
@@ -71,6 +73,28 @@ static int	ft_room_parser(const char *buf, t_parser *data, t_btree **graph, int 
 **	In the second step (data->steps == 1) we connecting the rooms between them.
 */
 
+static int	ft_iterate_buffer(char *tmp, t_parser *data, t_btree **graph,
+				int *i)
+{
+	if (data->ret == BUF_SIZE && !ft_strcpos('\n', &tmp[*i], '\0'))
+	{
+		if (!(ft_save_data(&tmp[*i], data, &i)))
+			return (FAIL);
+	}
+	else
+	{
+		if (tmp[*i] == '#')
+			ft_register_com(&tmp[*i], &i, data);
+		else
+		{
+			if (!(ft_room_parser(tmp, data, graph, &i)))
+				return (FAIL);
+		}
+		*i++;
+	}
+	return (SUCCESS);
+}
+
 int			ft_buf_parser(char *buf, t_parser *data, t_btree **graph)
 {
 	char	*tmp;
@@ -87,24 +111,8 @@ int			ft_buf_parser(char *buf, t_parser *data, t_btree **graph)
 	i = 0;
 	while (tmp[i])
 	{
-		if (data->ret == BUF_SIZE && !ft_strcpos('\n', &tmp[i], '\0'))
-		{
-			if (!(ft_save_data(&tmp[i], data, &i)))
-				return (clean_quit(&tmp, data, FAIL));
-		}
-		else
-		{
-			if (tmp[i] == '#')
-				ft_register_com(&tmp[i], &i, data);
-			else
-			{
-				if (!(ft_room_parser(tmp, data, graph, &i)))
-				{
-					return (clean_quit(&tmp, data, FAIL));
-				}
-			}
-			i++;
-		}
+		if (!(ft_iterate_buffer(tmp, data, graph, &i)))
+			return (clean_quit(&tmp, data, FAIL));
 	}
 	return (clean_quit(&tmp, data, SUCCESS));
 }

@@ -61,7 +61,8 @@ static int		move_ant(t_room *current, t_room *origin, t_parser *data)
 	return (SUCCESS);
 }
 
-static int		reverse_depth_search(t_room *current, t_room *origin, t_parser *data)
+static int		reverse_depth_search(t_room *current, t_room *origin,
+					t_parser *data)
 {
 	while (current != data->start)
 	{

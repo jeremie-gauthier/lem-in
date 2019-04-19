@@ -28,7 +28,7 @@ static t_room	*get_next(t_room *room)
 	return (NULL);
 }
 
-static void		set_capacity(t_room *room, t_parser *data)
+static void		set_capacity(t_room *room, t_parser *data, int *sum_capacity)
 {
 	t_room			*current;
 	unsigned int	len;
@@ -41,6 +41,7 @@ static void		set_capacity(t_room *room, t_parser *data)
 		len++;
 	}
 	room->capacity = (int)((float)1 / (float)len * 100);
+	*sum_capacity += room->capacity;
 	// ft_printf("Room -> %s Capa -> %i\n", room->name, room->capacity);
 }
 
@@ -88,13 +89,12 @@ int				ft_balance_flow(t_parser *data)
 		edge = ngbr->content;
 		if (edge->flow == 1)
 		{
-			set_capacity(edge->room, data);
+			set_capacity(edge->room, data, &sum_capacity);
 			if (edge->room->capacity > tmp_best_capa)
 			{
 				tmp_best_capa = edge->room->capacity;
 				best_path = edge->room;
 			}
-			sum_capacity += edge->room->capacity;
 		}
 		ngbr = ngbr->next;
 	}
