@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   memory.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmoulini <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/19 13:59:57 by cmoulini          #+#    #+#             */
+/*   Updated: 2019/04/19 14:01:00 by cmoulini         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/lem_in.h"
 
 t_parser	*init_parser(void)
@@ -6,10 +18,10 @@ t_parser	*init_parser(void)
 
 	if (!(new = (t_parser*)malloc(sizeof(*new))))
 		return (NULL);
-	new->ants	= -1;
-	new->status	=  0;
-	new->steps	=  0;
-	new->ret	=  0;
+	new->ants = -1;
+	new->status = 0;
+	new->steps = 0;
+	new->ret = 0;
 	new->start = NULL;
 	new->end = NULL;
 	new->last_line = NULL;
@@ -64,7 +76,7 @@ void		del_room(t_room **room)
 	ft_memdel((void*)room);
 }
 
-void	btree_deep_del(t_btree **root)
+void		btree_deep_del(t_btree **root)
 {
 	if (root && *root)
 	{

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   register_room.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmoulini <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/19 13:58:00 by cmoulini          #+#    #+#             */
+/*   Updated: 2019/04/19 13:59:00 by cmoulini         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/lem_in.h"
 
 static int	clean_quit(char **str, t_room **room)
@@ -45,7 +57,7 @@ static int	ft_search_duplicate(const t_room *room, t_btree *graph)
 {
 	t_room	*ret;
 	int		(*cmpf)(const void *, const void *);
-	
+
 	cmpf = &ft_btreecmp;
 	ret = (t_room*)btree_search_data(graph, (void*)room, cmpf);
 	if (ret == NULL)
@@ -72,7 +84,7 @@ int			ft_register_room(const char *buf, int *i, t_parser *data,
 {
 	t_room	*room;
 	char	*name;
-	int		(*cmpf)(const void *, const void *);	
+	int		(*cmpf)(const void *, const void *);
 
 	cmpf = &ft_btreecmp;
 	if (!(name = ft_strcdup_room(&buf[*i], i, ' ')))

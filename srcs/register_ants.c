@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   register_ants.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmoulini <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/19 13:56:46 by cmoulini          #+#    #+#             */
+/*   Updated: 2019/04/19 13:57:01 by cmoulini         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/lem_in.h"
 
 static int	ft_intlen(long nb)
@@ -11,7 +23,7 @@ static int	ft_intlen(long nb)
 	return (len);
 }
 
-int		ft_register_ants(const char *buf, int *i, t_parser *data)
+int			ft_register_ants(const char *buf, int *i, t_parser *data)
 {
 	long	ants;
 	int		diff;
