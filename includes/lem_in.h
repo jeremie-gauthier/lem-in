@@ -24,9 +24,10 @@ typedef struct	s_room
 	char			*name;
 	int				x;
 	int				y;
-	int				ant		: 28;
+	int				ant		: 27;
 	int				status	:  3;
 	unsigned int	room_used	:  1;
+	unsigned int	vertex_used : 1;
 	int				capacity;
 }				t_room;
 
@@ -95,6 +96,7 @@ int				flow_direction(t_parser *data);
 int				edmondkarp(t_parser *data);
 int				push_colony(t_parser *data);
 int				ft_balance_flow(t_parser *data);
+int				detect_vertex_separator(t_parser *data);
 
 /*
 **	FOR TESTING PURPOSE
