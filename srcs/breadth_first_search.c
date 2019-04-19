@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   breadth_first_search.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/19 14:08:48 by jergauth          #+#    #+#             */
+/*   Updated: 2019/04/19 14:08:48 by jergauth         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/lem_in.h"
 
 static t_bool	clean_quit(t_list **queue, t_bool ret)
@@ -6,7 +18,8 @@ static t_bool	clean_quit(t_list **queue, t_bool ret)
 	return (ret);
 }
 
-static int		ft_bfs_enqueue(t_room *current, t_list **queue, t_list *neighbours, t_parser *data)
+static int		ft_bfs_enqueue(t_room *current, t_list **queue,
+					t_list *neighbours, t_parser *data)
 {
 	t_edge	*edge;
 	t_room	*tmp;
@@ -30,7 +43,7 @@ static int		ft_bfs_enqueue(t_room *current, t_list **queue, t_list *neighbours, 
 	return (0);
 }
 
-t_bool		ft_bfs(t_parser *data)
+t_bool			ft_bfs(t_parser *data)
 {
 	t_list	*queue;
 	t_list	*current;

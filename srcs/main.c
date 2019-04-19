@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/19 14:09:35 by jergauth          #+#    #+#             */
+/*   Updated: 2019/04/19 14:09:36 by jergauth         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/lem_in.h"
 
 int		clean_quit(t_btree **graph, t_parser **data, const int ret)
@@ -31,8 +43,9 @@ void	print_btree(void *data)
 
 	room = (t_room*)data;
 	tmp = room->nghbr;
-	ft_printf("NAME : %s || X : %3i || Y : %3i || STATUS : %i || ANCESTOR : %s || ",
-			room->name, room->x, room->y, room->status, (room->ancestor == NULL) ? NULL : room->ancestor->name);
+	ft_printf("NAME : %s || STATUS : %i || ANCESTOR : %s || ",
+			room->name, room->status,
+			(room->ancestor == NULL) ? NULL : room->ancestor->name);
 	ft_printf("VOISINS => ");
 	while (tmp)
 	{

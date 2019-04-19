@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   balance_flow.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/19 14:08:42 by jergauth          #+#    #+#             */
+/*   Updated: 2019/04/19 14:08:44 by jergauth         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/lem_in.h"
 
 static t_room	*get_next(t_room *room)
@@ -32,7 +44,8 @@ static void		set_capacity(t_room *room, t_parser *data)
 	// ft_printf("Room -> %s Capa -> %i\n", room->name, room->capacity);
 }
 
-static void		set_relative_capacity(int sum_capacity, t_parser *data, t_room *best_path)
+static void		set_relative_capacity(int sum_capacity, t_parser *data,
+					t_room *best_path)
 {
 	t_list	*ngbr;
 	t_edge	*edge;
@@ -46,8 +59,10 @@ static void		set_relative_capacity(int sum_capacity, t_parser *data, t_room *bes
 		edge = ngbr->content;
 		if (edge->flow == 1)
 		{
-			relative_cap = (int)((float)edge->room->capacity / (float)sum_capacity * 100);
-			edge->room->capacity = (int)((float)relative_cap / (float)100 * data->ants);
+			relative_cap = (int)((float)edge->room->capacity
+					/ (float)sum_capacity * 100);
+			edge->room->capacity = (int)((float)relative_cap
+					/ (float)100 * data->ants);
 			tmp_ants -= edge->room->capacity;
 			// ft_printf("Room -> %s Got -> %i\n", edge->room->name, edge->room->capacity);
 		}
@@ -74,7 +89,6 @@ int				ft_balance_flow(t_parser *data)
 		if (edge->flow == 1)
 		{
 			set_capacity(edge->room, data);
-			// ft_printf("RETOUR\n");
 			if (edge->room->capacity > tmp_best_capa)
 			{
 				tmp_best_capa = edge->room->capacity;
