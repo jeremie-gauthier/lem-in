@@ -13,10 +13,20 @@ int	edmondkarp(t_parser *data)
 	}
 	if (i == 0)
 		return (FAIL);
-	while (data->end->ant < data->ants)
-	{
+	ft_balance_flow(data);
+	// while (data->end->ant < data->ants)
+	// {
+	// 	push_colony(data);
+	// 	ft_putchar('\n');
+	// }
 		push_colony(data);
+		ft_putchar('\n');		push_colony(data);
+		ft_putchar('\n');		push_colony(data);
+		ft_putchar('\n');		push_colony(data);
 		ft_putchar('\n');
-	}
+		push_colony(data);
+		ft_putchar('\n');push_colony(data);
+		ft_putchar('\n');push_colony(data);
+		ft_putchar('\n');
 	return (SUCCESS);
 }

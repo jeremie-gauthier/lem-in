@@ -27,6 +27,7 @@ typedef struct	s_room
 	int				ant		: 28;
 	int				status	:  3;
 	unsigned int	room_used	:  1;
+	int				capacity;
 }				t_room;
 
 typedef struct	s_edge
@@ -71,6 +72,8 @@ int				ft_register_coord(const char *buf, int *i, t_room *room,
 					const char limit);
 int				ft_register_path(const char *buf, int *i, t_btree **graph, t_parser *data);
 int				ft_save_data(const char *buf, t_parser *data, int *i);
+int				ft_strlimit(const char *str, const char limit);
+int				ft_strccmp(const char *s1, const char *s2, const char limit);
 
 /*
 **	B_tree tools functions
@@ -79,8 +82,11 @@ int				ft_save_data(const char *buf, t_parser *data, int *i);
 int				ft_btreecmp(const void *struct1, const void *struct2);
 int				ft_btreeccmp_hyphen(const void *struc, const void *str);
 int				ft_btreeccmp_newline(const void *struc, const void *str);
-int				ft_strccmp(const char *s1, const char *s2, const char limit);
-int				ft_strlimit(const char *str, const char limit);
+
+/*
+**	Algorithm
+*/
+
 t_bool			ft_lst_node_exists(t_list *head, t_room *node);
 t_bool			ft_lst_edge_exists(t_list *head, t_room *node);
 int				ft_fill_neighbours(t_list **head, t_list *to_add);
@@ -88,8 +94,7 @@ t_bool			ft_bfs(t_parser *data);
 int				flow_direction(t_parser *data);
 int				edmondkarp(t_parser *data);
 int				push_colony(t_parser *data);
-
-// void			ft_lst_push_back(t_list **head, t_room *new);
+int				ft_balance_flow(t_parser *data);
 
 /*
 **	FOR TESTING PURPOSE

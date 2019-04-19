@@ -18,7 +18,8 @@ SOURCES	=	main.c\
 			breadth_first_search.c\
 			set_flow.c\
 			edmondkarp.c\
-			colony.c
+			colony.c\
+			balance_flow.c
 
 DIR_C	=	srcs
 

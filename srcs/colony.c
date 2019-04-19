@@ -37,16 +37,33 @@ int		move_ant(t_room *current, t_room *origin, t_parser *data)
 		if ((current->ant == 0 || current == data->end) && origin->ant != 0
 				&& origin->ant <= data->ants && (origin->room_used != data->room_temoin || origin == data->start))
 		{
-			ft_printf("L%i-%s ", origin->ant, current->name);
-			if (current == data->end)
-				current->ant++;
-			else
-				current->ant = origin->ant;
-			if (origin == data->start)
-				origin->ant++;
-			else
-				origin->ant = 0;
-			current->room_used = data->room_temoin;
+			if (origin == data->start && current->capacity > 0)
+			{
+				current->capacity--;
+				ft_printf("L%i-%s ", origin->ant, current->name);
+				if (current == data->end)
+					current->ant++;
+				else
+					current->ant = origin->ant;
+				if (origin == data->start)
+					origin->ant++;
+				else
+					origin->ant = 0;
+				current->room_used = data->room_temoin;
+			}
+			else if (origin != data->start)
+			{
+				ft_printf("L%i-%s ", origin->ant, current->name);
+				if (current == data->end)
+					current->ant++;
+				else
+					current->ant = origin->ant;
+				if (origin == data->start)
+					origin->ant++;
+				else
+					origin->ant = 0;
+				current->room_used = data->room_temoin;
+			}
 		}
 		current = origin;
 		if (current != data->start)
