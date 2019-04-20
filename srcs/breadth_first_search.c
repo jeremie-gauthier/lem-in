@@ -29,7 +29,7 @@ static int		ft_bfs_enqueue(t_room *current, t_list **queue,
 	{
 		edge = neighbours->content;
 		tmp = edge->room;
-		if (edge->flow == 0 && !ft_lst_node_exists(*queue, tmp))
+		if (edge->tmp_flow == 0 && !ft_lst_node_exists(*queue, tmp))
 		{
 			tmp->ancestor = current;
 			if (tmp == data->end)

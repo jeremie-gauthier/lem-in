@@ -36,17 +36,19 @@ typedef struct	s_room
 	char			*name;
 	int				x;
 	int				y;
-	int				ant : 27;
+	int				tmp_capacity;
+	int				capacity;
+	int				ant;
 	int				status : 3;
 	unsigned int	room_used : 1;
 	unsigned int	vertex_used : 1;
-	int				capacity;
 }				t_room;
 
 typedef struct	s_edge
 {
 	t_room			*room;
-	int				flow;
+	int				tmp_flow : 16;
+	int				flow : 16;
 }				t_edge;
 
 typedef struct	s_parser
@@ -109,8 +111,9 @@ t_bool			ft_bfs(t_parser *data);
 int				flow_direction(t_parser *data);
 int				edmondkarp(t_parser *data);
 int				push_colony(t_parser *data);
-int				ft_balance_flow(t_parser *data);
+int				ft_balance_flow(t_parser *data, int *tours);
 int				detect_vertex_separator(t_parser *data);
+void			ft_keep_flow(t_parser *data);
 
 /*
 **	FOR TESTING PURPOSE

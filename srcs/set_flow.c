@@ -23,9 +23,10 @@ static int	isset_flow_opposite(t_list *neighbours, t_room *current)
 		tmp = edge->room;
 		if (tmp == current)
 		{
-			if (edge->flow == 1)
+			if (edge->tmp_flow == 1)
 			{
-				edge->flow = 0;
+				edge->tmp_flow = 0;
+				ft_printf("FLOW OPPOSITE !\n");
 				return (1);
 			}
 		}
@@ -46,7 +47,7 @@ static int	set_flow(t_list *neighbours, t_room *current, t_room *next)
 		if (tmp == next)
 		{
 			if (!isset_flow_opposite(next->nghbr, current))
-				edge->flow = 1;
+				edge->tmp_flow = 1;
 			return (SUCCESS);
 		}
 		neighbours = neighbours->next;

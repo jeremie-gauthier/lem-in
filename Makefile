@@ -20,7 +20,8 @@ SOURCES	=	main.c\
 			edmondkarp.c\
 			colony.c\
 			balance_flow.c\
-			vertex_separator.c
+			vertex_separator.c\
+			keep_flow.c
 
 DIR_C	=	srcs
 

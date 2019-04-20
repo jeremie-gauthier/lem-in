@@ -45,6 +45,7 @@ t_room		*init_room(char *name, const int status)
 	new->ancestor = NULL;
 	new->room_used = 0;
 	new->vertex_used = 0;
+	new->tmp_capacity = 0;
 	new->capacity = 0;
 	return (new);
 }
@@ -56,6 +57,7 @@ t_edge		*init_edge(t_room *room)
 	if (!(new = (t_edge*)malloc(sizeof(*new))))
 		return (NULL);
 	new->room = room;
+	new->tmp_flow = 0;
 	new->flow = 0;
 	return (new);
 }

@@ -25,13 +25,13 @@ int		depth_first_search(t_room *room, t_parser *data)
 	while (ngbr)
 	{
 		edge = ngbr->content;
-		if (edge->flow == 1)
+		if (edge->tmp_flow == 1)
 		{
 			room->vertex_used = 1;
 			if (!(depth_first_search(edge->room, data)))
 			{
 				room->vertex_used = 0;
-				edge->flow = 0;
+				edge->tmp_flow = 0;
 				return (FAIL);
 			}
 		}
@@ -52,7 +52,7 @@ int		detect_vertex_separator(t_parser *data)
 		if (edge->flow == 1)
 		{
 			if (!(depth_first_search(edge->room, data)))
-				edge->flow = 0;
+				edge->tmp_flow = 0;
 		}
 		ngbr = ngbr->next;
 	}
