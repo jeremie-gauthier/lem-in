@@ -15,30 +15,29 @@
 int	edmondkarp(t_parser *data)
 {
 	int	i;
+	int	tmp_tours;
 	int	tours;
-	int	cmp_tours;
 
+	tours = -1;
 	i = 0;
-	cmp_tours = -1;
 	while (ft_bfs(data) && data->ants > i)
 	{
 		if (!(flow_direction(data)))
 			return (FAIL);
 		detect_vertex_separator(data);
-		ft_balance_flow(data, &tours);
-		if (tours != -1 && (tours < cmp_tours || cmp_tours == -1))
+		ft_balance_flow(data);
+		tmp_tours = ft_predict_tours(data);
+		// ft_printf("prediction => %i\n", tmp_tours);
+		if (tours == -1 || tmp_tours < tours)
 		{
-			//copie des tmp_flow en flow
-			// ft_printf("cmp_tours = %i && tours %i\n", cmp_tours, tours);
-			ft_keep_flow(data);
-			cmp_tours = tours;
+			tours = tmp_tours;
+			ft_keep_flow(&data);
 		}
 		i++;
 	}
 	if (i == 0)
 		return (FAIL);
-	// ft_printf("FINAL = %i\n", cmp_tours);
-	// ft_printf("FLOW MAX = %i\n", i);
+	// ft_printf("nb %i\nTOURS PREDICTION => %i\n", i, tours);
 	while (data->end->ant < data->ants)
 	{
 		push_colony(data);

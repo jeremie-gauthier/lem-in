@@ -26,7 +26,6 @@ static int	isset_flow_opposite(t_list *neighbours, t_room *current)
 			if (edge->tmp_flow == 1)
 			{
 				edge->tmp_flow = 0;
-				ft_printf("FLOW OPPOSITE !\n");
 				return (1);
 			}
 		}

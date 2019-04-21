@@ -40,6 +40,24 @@ int		depth_first_search(t_room *room, t_parser *data)
 	return (SUCCESS);
 }
 
+void	reset_vertex_used(t_room *room)
+{
+	t_list	*ngbr;
+	t_edge	*edge;
+
+	ngbr = room->nghbr;
+	while (ngbr)
+	{
+		edge = ngbr->content;
+		if (edge->tmp_flow == 1)
+		{
+			room->vertex_used = 0;
+			reset_vertex_used(edge->room);
+		}
+		ngbr = ngbr->next;
+	}
+}
+
 int		detect_vertex_separator(t_parser *data)
 {
 	t_list	*ngbr;
@@ -49,11 +67,19 @@ int		detect_vertex_separator(t_parser *data)
 	while (ngbr)
 	{
 		edge = ngbr->content;
-		if (edge->flow == 1)
+		if (edge->tmp_flow == 1)
 		{
 			if (!(depth_first_search(edge->room, data)))
 				edge->tmp_flow = 0;
 		}
+		ngbr = ngbr->next;
+	}
+	ngbr = data->start->nghbr;
+	while (ngbr)
+	{
+		edge = ngbr->content;
+		if (edge->tmp_flow == 1)
+			reset_vertex_used(edge->room);
 		ngbr = ngbr->next;
 	}
 	return (SUCCESS);

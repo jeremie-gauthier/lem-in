@@ -111,9 +111,13 @@ t_bool			ft_bfs(t_parser *data);
 int				flow_direction(t_parser *data);
 int				edmondkarp(t_parser *data);
 int				push_colony(t_parser *data);
-int				ft_balance_flow(t_parser *data, int *tours);
+t_room			*get_next_room(t_room *room);
+int				ft_balance_flow(t_parser *data);
 int				detect_vertex_separator(t_parser *data);
-void			ft_keep_flow(t_parser *data);
+void			ft_keep_flow(t_parser **data);
+int				ft_predict_tours(t_parser *data);
+void			ft_redistribute_flux(t_parser *data, int tmp_ants,
+					t_room *best_path);
 
 /*
 **	FOR TESTING PURPOSE

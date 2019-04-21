@@ -43,9 +43,10 @@ void	print_btree(void *data)
 
 	room = (t_room*)data;
 	tmp = room->nghbr;
-	ft_printf("NAME : %s || STATUS : %i || ANCESTOR : %s || ",
+	ft_printf("NAME : %s || STATUS : %i || ANCESTOR : %s || CAPA = %i || ",
 			room->name, room->status,
-			(room->ancestor == NULL) ? NULL : room->ancestor->name);
+			(room->ancestor == NULL) ? NULL : room->ancestor->name),
+			room->capacity;
 	ft_printf("VOISINS => ");
 	while (tmp)
 	{

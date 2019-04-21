@@ -21,7 +21,9 @@ SOURCES	=	main.c\
 			colony.c\
 			balance_flow.c\
 			vertex_separator.c\
-			keep_flow.c
+			keep_flow.c\
+			get_next_room.c\
+			predict_tours.c
 
 DIR_C	=	srcs
 
@@ -35,7 +37,7 @@ OBJS	=	$(addprefix $(DIR_O)/,$(SRCS:.c=.o))
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Werror -Wextra
+CFLAGS	=	#-Wall -Werror -Wextra
 
 LIB_PATH=	libft
 
