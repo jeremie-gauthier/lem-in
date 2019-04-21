@@ -44,7 +44,6 @@ static void		set_relative_capacity(int sum_capacity, t_parser *data,
 	t_list	*ngbr;
 	t_edge	*edge;
 	float	relative_cap;
-	float	tmp_cap;
 	int		tmp_ants;
 
 	tmp_ants = data->ants;
@@ -56,14 +55,8 @@ static void		set_relative_capacity(int sum_capacity, t_parser *data,
 		{
 			relative_cap = ((float)edge->room->tmp_capacity
 					/ (float)sum_capacity * 100);
-			tmp_cap = ((float)relative_cap / (float)100 * data->ants);
-			// if (tmp_cap - (int)tmp_cap > 0.5)
-			// 	edge->room->tmp_capacity = tmp_cap + 1;
-			// else
-			if (tmp_cap > 0)
-				edge->room->tmp_capacity = tmp_cap - 1;
-			else
-				edge->room->tmp_capacity = tmp_cap;
+			edge->room->tmp_capacity = (int)((float)relative_cap
+					/ (float)100 * data->ants);
 			tmp_ants -= edge->room->tmp_capacity;
 			// ft_printf("Room -> %s Got -> %i\n", edge->room->name, edge->room->tmp_capacity);
 		}
