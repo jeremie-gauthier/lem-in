@@ -37,13 +37,13 @@ void	ft_keep_flow(t_parser **data)
 	{
 		edge = ngbr->content;
 		// ft_printf("EDGE ROOM NAME %s %i %i %i %i\n", edge->room->name, edge->flow, edge->tmp_flow, edge->room->capacity, edge->room->tmp_capacity);
-		edge->flow = edge->tmp_flow;
-		edge->room->capacity = edge->room->tmp_capacity;
+	//	edge->flow = edge->tmp_flow;
+	//	edge->room->capacity = edge->room->tmp_capacity;
 		// ft_printf("EDGE ROOM NAME %s %i %i %i %i\n", edge->room->name, edge->flow, edge->tmp_flow, edge->room->capacity, edge->room->tmp_capacity);
 		if (edge->tmp_flow == 1)
 		{
-			// edge->flow = edge->tmp_flow;
-			// edge->room->capacity = edge->room->tmp_capacity;
+			 edge->flow = edge->tmp_flow;
+			 edge->room->capacity = edge->room->tmp_capacity;
 			depth_first_search(edge->room, data);
 		}
 		ngbr = ngbr->next;

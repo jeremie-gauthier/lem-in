@@ -36,6 +36,7 @@ int			ft_predict_tours(t_parser *data)
 
 	ngbr = data->start->nghbr;
 	path_len = 0; // peut etre a suppr
+	ret = 0;
 	while (ngbr)
 	{
 		edge = ngbr->content;
