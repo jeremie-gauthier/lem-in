@@ -42,6 +42,7 @@ int	edmondkarp(t_parser *data)
 		detect_vertex_separator(data);
 		ft_balance_flow(data);
 		tmp_tours = ft_predict_tours(data);
+		set_len_path(data);
 		flow_max++;
 		if (!(ft_ants_repartition(data, flow_max)))
 			return (FAIL);

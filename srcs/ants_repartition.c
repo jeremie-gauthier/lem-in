@@ -24,13 +24,24 @@ static t_room	**init_roomtab(t_parser *data, int flow_max)
 	return (new);
 }
 
+static void	ft_sort_roomtab(t_room **tab)
+{
+
+}
+
+static void	ft_balance_ants(t_room **tab, int len)
+{
+
+}
+
 int			ft_ants_repartition(t_parser *data, int flow_max)
 {
 	t_room	**tab;
-	
+
 	if (!(tab = init_roomtab(data, flow_max)))
 		return (FAIL);
-	
+	ft_sort_roomtab(tab);
+	ft_balance_ants(tab, flow_max);
 	ft_memdel((void*)&tab);
 	return (SUCCESS);
 }

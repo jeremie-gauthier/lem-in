@@ -24,6 +24,7 @@ SOURCES	=	main.c\
 			keep_flow.c\
 			get_next_room.c\
 			predict_tours.c\
+			len_path.c\
 			ants_repartition.c
 
 DIR_C	=	srcs

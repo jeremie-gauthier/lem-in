@@ -39,6 +39,7 @@ typedef struct	s_room
 	int				tmp_capacity;
 	int				capacity;
 	int				ant;
+	int				len_path;
 	int				status : 3;
 	unsigned int	room_used : 1;
 	unsigned int	vertex_used : 1;
@@ -118,6 +119,7 @@ void			ft_keep_flow(t_parser **data);
 int				ft_predict_tours(t_parser *data);
 void			ft_redistribute_flux(t_parser *data, int tmp_ants,
 					t_room *best_path);
+void			set_len_path(t_parser *data);
 int				ft_ants_repartition(t_parser *data, int flow_max);
 
 /*

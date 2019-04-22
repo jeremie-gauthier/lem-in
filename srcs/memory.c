@@ -43,6 +43,7 @@ t_room		*init_room(char *name, const int status)
 	new->nghbr = NULL;
 	new->status = status;
 	new->ancestor = NULL;
+	new->len_path = 0;
 	new->room_used = 0;
 	new->vertex_used = 0;
 	new->tmp_capacity = 0;
