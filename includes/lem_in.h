@@ -118,6 +118,7 @@ void			ft_keep_flow(t_parser **data);
 int				ft_predict_tours(t_parser *data);
 void			ft_redistribute_flux(t_parser *data, int tmp_ants,
 					t_room *best_path);
+int				ft_ants_repartition(t_parser *data, int flow_max);
 
 /*
 **	FOR TESTING PURPOSE

@@ -23,7 +23,8 @@ SOURCES	=	main.c\
 			vertex_separator.c\
 			keep_flow.c\
 			get_next_room.c\
-			predict_tours.c
+			predict_tours.c\
+			ants_repartition.c
 
 DIR_C	=	srcs
 

@@ -42,13 +42,15 @@ int	edmondkarp(t_parser *data)
 		detect_vertex_separator(data);
 		ft_balance_flow(data);
 		tmp_tours = ft_predict_tours(data);
+		flow_max++;
+		if (!(ft_ants_repartition(data, flow_max)))
+			return (FAIL);
 		// ft_printf("prediction => %i\n", tmp_tours);
 		if (tours == -1 || tmp_tours < tours)
 		{
 			tours = tmp_tours;
 			ft_keep_flow(&data);
 		}
-		flow_max++;
 	}
 	if (flow_max == 0)
 		return (FAIL);
