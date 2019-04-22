@@ -35,7 +35,7 @@ int	edmondkarp(t_parser *data)
 
 	tours = -1;
 	flow_max = 0;
-	while (ft_bfs(data) && data->ants > i)
+	while (ft_bfs(data) && data->ants > flow_max)
 	{
 		if (!(flow_direction(data)))
 			return (FAIL);
