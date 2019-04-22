@@ -29,12 +29,12 @@
 
 int	edmondkarp(t_parser *data)
 {
-	int	i;
+	int	flow_max;
 	int	tmp_tours;
 	int	tours;
 
 	tours = -1;
-	i = 0;
+	flow_max = 0;
 	while (ft_bfs(data) && data->ants > i)
 	{
 		if (!(flow_direction(data)))
@@ -48,9 +48,9 @@ int	edmondkarp(t_parser *data)
 			tours = tmp_tours;
 			ft_keep_flow(&data);
 		}
-		i++;
+		flow_max++;
 	}
-	if (i == 0)
+	if (flow_max == 0)
 		return (FAIL);
 	//ft_printf("nb %i\nTOURS PREDICTION => %i\n", i, tours);
 	//ft_print_neigh(data);
