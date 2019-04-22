@@ -123,11 +123,14 @@ static void	ft_balance_ants(t_parser *data, t_room **tab, int len)
 				ant_not_set = false;
 				tmp_ants--;
 			}
-			else if (ft_cmproom_capa(tab[i], tab[i + 1]) == 1)
+			else
 			{
-				tab[i]->tmp_capacity++;
-				ant_not_set = false;
-				tmp_ants--;
+				if (ft_cmproom_capa(tab[i], tab[i + 1]) == 1)
+				{
+					tab[i]->tmp_capacity++;
+					ant_not_set = false;
+					tmp_ants--;
+				}
 			}
 			i++;
 		}
@@ -187,6 +190,8 @@ int			ft_ants_repartition(t_parser *data, int *max_tours)
 	int		len;
 
 	len = ft_get_nb_flows(data);
+	if (len == 0)
+		return (SUCCESS);
 	if (!(tab = init_roomtab(data, len)))
 		return (FAIL);
 	reset_previous_data(tab, len);
