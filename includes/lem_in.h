@@ -115,12 +115,12 @@ int				push_colony(t_parser *data);
 t_room			*get_next_room(t_room *room);
 int				ft_balance_flow(t_parser *data);
 int				detect_vertex_separator(t_parser *data);
-void			ft_keep_flow(t_parser **data);
+void			ft_keep_flow(t_room *room, t_parser *data);
 int				ft_predict_tours(t_parser *data);
 void			ft_redistribute_flux(t_parser *data, int tmp_ants,
 					t_room *best_path);
 void			set_len_path(t_parser *data);
-int				ft_ants_repartition(t_parser *data, int flow_max);
+int			ft_ants_repartition(t_parser *data, int *max_tours);
 
 /*
 **	FOR TESTING PURPOSE

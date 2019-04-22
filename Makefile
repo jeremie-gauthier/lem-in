@@ -39,7 +39,7 @@ OBJS	=	$(addprefix $(DIR_O)/,$(SRCS:.c=.o))
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Werror -Wextra
+CFLAGS	=	#-Wall -Werror -Wextra
 
 LIB_PATH=	libft
 

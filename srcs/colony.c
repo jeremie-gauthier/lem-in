@@ -61,22 +61,51 @@ static int		move_ant(t_room *current, t_room *origin, t_parser *data)
 	return (SUCCESS);
 }
 
-static int		reverse_depth_search(t_room *current, t_room *origin,
-					t_parser *data)
+// static int		reverse_depth_search(t_room *current, t_room *origin,
+// 					t_parser *data)
+// {
+// 	while (current != data->start)
+// 	{
+// 		if ((current->ant == 0 || current == data->end) && origin->ant != 0
+// 					&& origin->ant <= data->ants
+// 					&& (origin->room_used != data->room_temoin
+// 					|| origin == data->start))
+// 			move_ant(current, origin, data);
+// 		current = origin;
+// 		ft_printf("currently in %s\n", current->name); //
+// 		if (current != data->start)
+// 			if (!(origin = get_origin(current, current->nghbr)))
+// 				return (FAIL);
+// 	}
+// 	return (SUCCESS);
+// }
+
+static int		reverse_depth_search(t_room *current, t_room *origin, t_parser *data)
 {
-	while (current != data->start)
+	t_list	*ngbr;
+	t_edge	*edge;
+
+	if (current == data->start)
+		return (1);
+	if ((current->ant == 0 || current == data->end) && origin->ant != 0
+				&& origin->ant <= data->ants
+				&& (origin->room_used != data->room_temoin
+				|| origin == data->start))
+		move_ant(current, origin, data);
+	current = origin;
+	// ft_printf("currently in %s\n", current->name); //
+	ngbr = current->nghbr;
+	while (ngbr)
 	{
-		if ((current->ant == 0 || current == data->end) && origin->ant != 0
-					&& origin->ant <= data->ants
-					&& (origin->room_used != data->room_temoin
-					|| origin == data->start))
-			move_ant(current, origin, data);
-		current = origin;
-		if (current != data->start)
-			if (!(origin = get_origin(current, current->nghbr)))
-				return (FAIL);
+		edge = ngbr->content;
+		if (valid_origin(current, edge->room))
+		{
+			origin = edge->room;		
+			reverse_depth_search(current, origin, data);
+		}
+		ngbr = ngbr->next;
 	}
-	return (SUCCESS);
+	return (0);
 }
 
 int				push_colony(t_parser *data)
