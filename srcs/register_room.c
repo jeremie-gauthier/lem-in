@@ -79,6 +79,11 @@ static void	ft_register_start_end(t_parser *data, t_room *room)
 	}
 }
 
+/*
+**	Register a line that contains the correct informations (name x y).
+**	Else, returns ERROR.
+*/
+
 int			ft_register_room(const char *buf, int *i, t_parser *data,
 				t_btree **graph)
 {

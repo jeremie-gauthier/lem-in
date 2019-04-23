@@ -58,6 +58,13 @@ void	reset_vertex_used(t_room *room)
 	}
 }
 
+/*
+**	This function aims to check that there is no "bottleneck"
+**	(or vertex_separator) in the residual graph.
+**	If one is found, we are removing the path that use it as we need
+**	no traffic jam.
+*/
+
 int		detect_vertex_separator(t_parser *data)
 {
 	t_list	*ngbr;

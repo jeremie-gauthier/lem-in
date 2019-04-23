@@ -12,6 +12,11 @@
 
 #include "../includes/lem_in.h"
 
+/*
+**	This function aims to find the son node of room that is needed to get a
+**	complete path to end.
+*/
+
 t_room	*get_next_room(t_room *room)
 {
 	t_list	*ngbr;

@@ -12,6 +12,14 @@
 
 #include "../includes/lem_in.h"
 
+/*
+**	We can predict the number of tours needed for x ants to get to the end node
+**	thanks to the foolowing formula :
+**	number_of_ants + len_of_the_path - 1
+**	So here we are trying to predict the new numbers of tours needed if we add
+**	an ant to the path.
+*/
+
 static int	ft_cmproom_capa(t_room *current, t_room *next)
 {
 	int	tours_current;
@@ -56,6 +64,12 @@ static void	ft_balance_ants(t_parser *data, t_room **tab, int len)
 	}
 }
 
+/*
+**	To find the numbers of tours a residual graph can take to get ants to end
+**	we just need to find the maximum numbers of tours the `worst` path will take
+**	Here, this data will be save in *max_tours and use in Edmond Karp.
+*/
+
 static void	get_max_tours(t_room **tab, int len, int *max_tours)
 {
 	int	i;
@@ -74,6 +88,11 @@ static void	get_max_tours(t_room **tab, int len, int *max_tours)
 		}
 	}
 }
+
+/*
+**	We are setting the number of ants that each path should carry
+**	to do the optimum solution.
+*/
 
 int			ft_ants_repartition(t_parser *data, int *max_tours)
 {
