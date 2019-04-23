@@ -12,6 +12,10 @@
 
 #include "../includes/lem_in.h"
 
+/*
+**	Equivalent to enqueue
+*/
+
 int		ft_fill_neighbours(t_list **head, t_list *to_add)
 {
 	t_list	*tmp;

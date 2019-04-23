@@ -21,6 +21,13 @@ static void	display_moves(t_parser *data)
 	}
 }
 
+/*
+**	Edmond Karp's algorithm give us the max flow in a graph.
+**	It use the Breadth First Search (also called BFS) to do so.
+**	For each iteration, we make a residual graph that is the result of all
+**	the previous iteration plus the new one.
+*/
+
 int			edmondkarp(t_parser *data)
 {
 	int	flow_max;
