@@ -28,20 +28,6 @@ static t_bool	valid_origin(t_room *room, t_room *origin)
 	return (false);
 }
 
-static t_room	*get_origin(t_room *current, t_list *ngbr)
-{
-	t_edge	*edge;
-
-	while (ngbr)
-	{
-		edge = ngbr->content;
-		if (valid_origin(current, edge->room))
-			return (edge->room);
-		ngbr = ngbr->next;
-	}
-	return (NULL);
-}
-
 static int		move_ant(t_room *current, t_room *origin, t_parser *data)
 {
 	if (origin == data->start && current->capacity <= 0)
