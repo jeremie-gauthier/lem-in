@@ -45,7 +45,6 @@ int		main(int argc, char **argv)
 			return (1);
 		if (!(ft_read_stdin(&graph, data)))
 			return (clean_quit(&graph, &data, 1));
-		ft_printf("\n");
 		if (!(edmondkarp(data)))
 			return (clean_quit(&graph, &data, 1));
 		clean_quit(&graph, &data, 0);
