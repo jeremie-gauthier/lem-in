@@ -54,6 +54,10 @@ static int	set_flow(t_list *neighbours, t_room *current, t_room *next)
 	return (FAIL);
 }
 
+/*
+**	This function attempt to set the new flow for the residual graph.
+*/
+
 int			flow_direction(t_parser *data)
 {
 	t_room *current;

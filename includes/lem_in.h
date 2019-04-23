@@ -15,7 +15,7 @@
 
 # include "../libft/libft.h"
 
-# define BUF_SIZE	4096
+# define BUF_SIZE	8192
 # define FAIL		0
 # define SUCCESS	1
 # define COMMENTARY	"#"
