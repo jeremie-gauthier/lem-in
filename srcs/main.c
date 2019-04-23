@@ -34,29 +34,6 @@ int		clean_quit(t_btree **graph, t_parser **data, const int ret)
 	return (ret);
 }
 
-void	print_btree(void *data)
-{
-	t_room	*room;
-	t_list	*tmp;
-	t_room	*tmproom;
-	t_edge	*edge;
-
-	room = (t_room*)data;
-	tmp = room->nghbr;
-	ft_printf("NAME : %s || STATUS : %i || ANCESTOR : %s || CAPA = %i || ",
-			room->name, room->status,
-			(room->ancestor == NULL) ? NULL : room->ancestor->name, room->capacity);
-	ft_printf("VOISINS => ");
-	while (tmp)
-	{
-		edge = (t_edge*)tmp->content;
-		tmproom = (t_room*)edge->room;
-		ft_printf("%s:%i ", tmproom->name, edge->flow);
-		tmp = tmp->next;
-	}
-	ft_printf("\n");
-}
-
 int		main(int argc, char **argv)
 {
 	t_btree		*graph;
@@ -67,13 +44,12 @@ int		main(int argc, char **argv)
 	{
 		graph = NULL;
 		if (!(data = init_parser()))
-			return (FAIL);
+			return (1);
 		if (!(ft_read_stdin(&graph, data)))
 			return (clean_quit(&graph, &data, 1));
+		ft_printf("\n");
 		if (!(edmondkarp(data)))
 			return (clean_quit(&graph, &data, 1));
-		// btree_apply_infix_lr(graph, print_btree);
-		// ft_printf("{green}OK =){reset}\n"); //
 		clean_quit(&graph, &data, 0);
 	}
 	else

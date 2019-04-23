@@ -1,7 +1,8 @@
 NAME	=	lem-in
 
 SOURCES	=	main.c\
-			memory.c\
+			memory_init.c\
+			memory_del.c\
 			ft_btreecmp.c\
 			ft_strccmp.c\
 			ft_strlimit.c\
@@ -19,12 +20,12 @@ SOURCES	=	main.c\
 			set_flow.c\
 			edmondkarp.c\
 			colony.c\
-			balance_flow.c\
 			vertex_separator.c\
 			keep_flow.c\
 			get_next_room.c\
-			predict_tours.c\
 			len_path.c\
+			ft_get_nb_flows.c\
+			ft_sort_roomtab.c\
 			ants_repartition.c
 
 DIR_C	=	srcs
@@ -39,7 +40,7 @@ OBJS	=	$(addprefix $(DIR_O)/,$(SRCS:.c=.o))
 
 CC		=	gcc
 
-CFLAGS	=	#-Wall -Werror -Wextra
+CFLAGS	=	-Wall -Werror -Wextra
 
 LIB_PATH=	libft
 

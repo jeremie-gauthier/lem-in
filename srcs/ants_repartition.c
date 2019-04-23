@@ -1,96 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ants_repartition.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/23 16:32:29 by jergauth          #+#    #+#             */
+/*   Updated: 2019/04/23 16:32:30 by jergauth         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/lem_in.h"
-
-static int		ft_get_nb_flows(t_parser *data)
-{
-	t_list	*ngbr;
-	t_edge	*edge;
-	int		ret;
-
-	ret = 0;
-	ngbr = data->start->nghbr;
-	while (ngbr)
-	{
-		edge = ngbr->content;
-		if (edge->tmp_flow == 1)
-			ret++;
-		ngbr = ngbr->next;
-	}
-	return (ret);
-}
-
-static int	valid(t_room *room, t_parser *data)
-{
-	t_list	*ngbr;
-	t_edge	*edge;
-
-	if (room == data->end)
-		return (1);
-	if (room != data->end)
-	{
-		ngbr = room->nghbr;
-		while (ngbr)
-		{
-			edge = ngbr->content;
-			// edge->flow = edge->tmp_flow;
-			// edge->room->capacity = edge->room->tmp_capacity;
-			if (edge->tmp_flow == 1)
-				if (valid(edge->room, data))
-					return (1);
-			ngbr = ngbr->next;
-		}
-	}
-	return (0);
-}
-
-static t_room	**init_roomtab(t_parser *data, int len)
-{
-	t_room	**new;
-	t_list	*ngbr;
-	t_edge	*edge;
-	int		i;
-
-	if (!(new = (t_room**)malloc(sizeof(*new) * len + 1)))
-		return (NULL);
-	i = 0;
-	ngbr = data->start->nghbr;
-	while (ngbr)
-	{
-		edge = ngbr->content;
-		if (edge->tmp_flow == 1)
-		{
-			new[i] = edge->room;
-			i++;
-		}
-		ngbr = ngbr->next;
-	}
-	new[i] = NULL;
-	return (new);
-}
-
-static void	ft_sort_roomtab(t_room **tab, int len)
-{
-	t_room *tmp;
-	int		i;
-	int		j;
-
-	i = 0;
-	while (i < len - 1)
-	{
-		j = i + 1;
-		while (j < len)
-		{
-			// ft_printf("TEST %i %i %s\n", len, i, tab[j]->name);
-			if (tab[i]->len_path > tab[j]->len_path)
-			{
-				tmp = tab[i];
-				tab[i] = tab[j];
-				tab[j] = tmp;
-			}
-			j++;
-		}
-		i++;
-	}
-}
 
 static int	ft_cmproom_capa(t_room *current, t_room *next)
 {
@@ -102,6 +22,13 @@ static int	ft_cmproom_capa(t_room *current, t_room *next)
 	if (tours_next <= tours_current)
 		return (0);
 	return (1);
+}
+
+static void	ft_set_vars(t_room *room, int *tmp_ants, t_bool *ant_not_set)
+{
+	room->tmp_capacity++;
+	*ant_not_set = false;
+	(*tmp_ants)--;
 }
 
 static void	ft_balance_ants(t_parser *data, t_room **tab, int len)
@@ -118,19 +45,11 @@ static void	ft_balance_ants(t_parser *data, t_room **tab, int len)
 		while (ant_not_set == true)
 		{
 			if (i == len - 1)
-			{
-				tab[i]->tmp_capacity++;
-				ant_not_set = false;
-				tmp_ants--;
-			}
+				ft_set_vars(tab[i], &tmp_ants, &ant_not_set);
 			else
 			{
 				if (ft_cmproom_capa(tab[i], tab[i + 1]) == 1)
-				{
-					tab[i]->tmp_capacity++;
-					ant_not_set = false;
-					tmp_ants--;
-				}
+					ft_set_vars(tab[i], &tmp_ants, &ant_not_set);
 			}
 			i++;
 		}
@@ -156,34 +75,6 @@ static void	get_max_tours(t_room **tab, int len, int *max_tours)
 	}
 }
 
-static void ft_print_neigh(t_parser *data)
-{
-	t_list *ngbr;
-	t_edge *edge;
-
-	ngbr = data->start->nghbr;
-	while (ngbr)
-	{
-		edge = ngbr->content;
-		if (edge->tmp_flow)
-			ft_printf("%s - %i\n", edge->room->name, edge->room->tmp_capacity);
-		ngbr = ngbr->next;
-	}
-	ft_printf("\n\n");
-}
-
-static void	reset_previous_data(t_room **tab, int len)
-{
-	int	i;
-
-	i = 0;
-	while (i < len)
-	{
-		tab[i]->tmp_capacity = 0;
-		i++;
-	}
-}
-
 int			ft_ants_repartition(t_parser *data, int *max_tours)
 {
 	t_room	**tab;
@@ -198,7 +89,6 @@ int			ft_ants_repartition(t_parser *data, int *max_tours)
 	ft_sort_roomtab(tab, len);
 	ft_balance_ants(data, tab, len);
 	get_max_tours(tab, len, max_tours);
-	// ft_print_neigh(data);
 	ft_memdel((void*)&tab);
 	return (SUCCESS);
 }

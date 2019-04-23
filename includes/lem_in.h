@@ -72,8 +72,10 @@ typedef struct	s_parser
 t_parser		*init_parser(void);
 t_room			*init_room(char *name, const int status);
 t_edge			*init_edge(t_room *room);
+t_room			**init_roomtab(t_parser *data, int len);
 void			del_room(t_room **room);
 void			btree_deep_del(t_btree **root);
+void			reset_previous_data(t_room **tab, int len);
 
 /*
 **	Parsing functions
@@ -113,20 +115,11 @@ int				flow_direction(t_parser *data);
 int				edmondkarp(t_parser *data);
 int				push_colony(t_parser *data);
 t_room			*get_next_room(t_room *room);
-int				ft_balance_flow(t_parser *data);
 int				detect_vertex_separator(t_parser *data);
 void			ft_keep_flow(t_room *room, t_parser *data);
-int				ft_predict_tours(t_parser *data);
-void			ft_redistribute_flux(t_parser *data, int tmp_ants,
-					t_room *best_path);
 void			set_len_path(t_parser *data);
-int			ft_ants_repartition(t_parser *data, int *max_tours);
-
-/*
-**	FOR TESTING PURPOSE
-*/
-
-void			print_btree(void *data); // in main.c
-void			print_list(t_list *head); // in check_validity.c
+int				ft_get_nb_flows(t_parser *data);
+void			ft_sort_roomtab(t_room **tab, int len);
+int				ft_ants_repartition(t_parser *data, int *max_tours);
 
 #endif

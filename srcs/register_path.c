@@ -12,7 +12,8 @@
 
 #include "../includes/lem_in.h"
 
-static int		clean_quit(t_edge **edge1, t_edge **edge2, t_list **tmp, const int ret)
+static int		clean_quit(t_edge **edge1, t_edge **edge2, t_list **tmp,
+					const int ret)
 {
 	if (edge1 && *edge1)
 		ft_memdel((void*)edge1);

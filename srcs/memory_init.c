@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memory.c                                           :+:      :+:    :+:   */
+/*   memory_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmoulini <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/19 13:59:57 by cmoulini          #+#    #+#             */
-/*   Updated: 2019/04/19 14:01:00 by cmoulini         ###   ########.fr       */
+/*   Created: 2019/04/23 16:33:54 by jergauth          #+#    #+#             */
+/*   Updated: 2019/04/23 16:33:55 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,32 +63,27 @@ t_edge		*init_edge(t_room *room)
 	return (new);
 }
 
-void		del_room(t_room **room)
+t_room		**init_roomtab(t_parser *data, int len)
 {
-	t_list	*current;
-	t_list	*tmp;
+	t_room	**new;
+	t_list	*ngbr;
+	t_edge	*edge;
+	int		i;
 
-	ft_strdel(&(*room)->name);
-	current = (*room)->nghbr;
-	while (current)
+	if (!(new = (t_room**)malloc(sizeof(*new) * len + 1)))
+		return (NULL);
+	i = 0;
+	ngbr = data->start->nghbr;
+	while (ngbr)
 	{
-		tmp = current->next;
-		ft_memdel((void*)current);
-		current = tmp;
+		edge = ngbr->content;
+		if (edge->tmp_flow == 1)
+		{
+			new[i] = edge->room;
+			i++;
+		}
+		ngbr = ngbr->next;
 	}
-	ft_lstdel(&(*room)->nghbr, NULL);
-	ft_memdel((void*)room);
-}
-
-void		btree_deep_del(t_btree **root)
-{
-	if (root && *root)
-	{
-		if ((*root)->left)
-			btree_deep_del(&(*root)->left);
-		if ((*root)->right)
-			btree_deep_del(&(*root)->right);
-		del_room((t_room**)&(*root)->data);
-		ft_memdel((void*)root);
-	}
+	new[i] = NULL;
+	return (new);
 }

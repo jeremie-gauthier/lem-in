@@ -43,6 +43,5 @@ int			ft_read_stdin(t_btree **graph, t_parser *data)
 		return (FAIL);
 	if (data->start == NULL || data->end == NULL)
 		return (FAIL);
-	ft_printf("\n");
 	return (SUCCESS);
 }

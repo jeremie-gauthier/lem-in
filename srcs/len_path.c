@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   len_path.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/23 16:35:31 by jergauth          #+#    #+#             */
+/*   Updated: 2019/04/23 16:35:32 by jergauth         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/lem_in.h"
 
 static int		get_len_path(t_room *room, t_parser *data)
@@ -15,7 +27,7 @@ static int		get_len_path(t_room *room, t_parser *data)
 	return (len);
 }
 
-void	set_len_path(t_parser *data)
+void			set_len_path(t_parser *data)
 {
 	t_list	*ngbr;
 	t_edge	*edge;
