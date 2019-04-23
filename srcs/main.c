@@ -6,7 +6,7 @@
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 14:09:35 by jergauth          #+#    #+#             */
-/*   Updated: 2019/04/19 14:09:36 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/04/23 16:58:58 by cmoulini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int		clean_quit(t_btree **graph, t_parser **data, const int ret)
 		ft_printf("%s", buf);
 		read_smtg = true;
 	}
-	if (ret == 1 && red == 0 && read_smtg == true)
-		ft_printf("\n");
 	if (ret == 1)
 		ft_printf("{red}ERROR{reset}\n");
 	ft_memdel((void*)data);

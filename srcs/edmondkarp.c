@@ -6,7 +6,7 @@
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 14:09:02 by jergauth          #+#    #+#             */
-/*   Updated: 2019/04/19 14:09:03 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/04/23 16:58:41 by cmoulini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	display_moves(t_parser *data)
 {
+	ft_printf("\n");
 	while (data->end->ant < data->ants)
 	{
 		push_colony(data);
