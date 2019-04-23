@@ -30,7 +30,8 @@ int			ft_read_stdin(t_btree **graph, t_parser *data)
 		i = 0;
 		while (buf[i] == '#')
 		{
-			ft_register_com(&buf[i], &i, data);
+			if (!(ft_register_com(&buf[i], &i, data)))
+				return (FAIL);
 			i++;
 		}
 		if (data->ants == -1)

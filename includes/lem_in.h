@@ -59,9 +59,11 @@ typedef struct	s_parser
 	char			*last_line;
 	t_bool			malloced;
 	int				ants;
-	int				ret : 26;
-	int				status : 3;
+	int				ret : 24;
 	int				steps : 2;
+	int				status : 3;
+	unsigned int	start_set : 1;
+	unsigned int	end_set : 1;
 	unsigned int	room_temoin : 1;
 }				t_parser;
 

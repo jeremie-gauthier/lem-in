@@ -18,11 +18,21 @@ int		ft_register_com(const char *buf, int *i, t_parser *data)
 
 	j = 0;
 	if (ft_strncasecmp(buf, START_COM, 8) == IDENTICAL)
+	{
+		if (data->start_set == 1)
+			return (FAIL);
 		data->status = START;
+		data->start_set = 1;
+	}
 	else if (ft_strncasecmp(buf, END_COM, 6) == IDENTICAL)
+	{
+		if (data->end_set == 1)
+			return (FAIL);
 		data->status = END;
+		data->end_set = 1;
+	}
 	while (buf[j] && buf[j] != '\n')
 		j++;
 	*i += j;
-	return (1);
+	return (SUCCESS);
 }

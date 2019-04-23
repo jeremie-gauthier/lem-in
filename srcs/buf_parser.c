@@ -84,7 +84,10 @@ static int	ft_iterate_buffer(char *tmp, t_parser *data, t_btree **graph,
 	else
 	{
 		if (tmp[*i] == '#')
-			ft_register_com(&tmp[*i], i, data);
+		{
+			if (!(ft_register_com(&tmp[*i], i, data)))
+				return (FAIL);
+		}
 		else
 		{
 			if (!(ft_room_parser(tmp, data, graph, i)))

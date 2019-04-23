@@ -20,6 +20,8 @@ t_parser	*init_parser(void)
 		return (NULL);
 	new->ants = -1;
 	new->status = 0;
+	new->start_set = 0;
+	new->end_set = 0;
 	new->steps = 0;
 	new->ret = 0;
 	new->start = NULL;
@@ -70,7 +72,7 @@ t_room		**init_roomtab(t_parser *data, int len)
 	t_edge	*edge;
 	int		i;
 
-	if (!(new = (t_room**)malloc(sizeof(*new) * len + 1)))
+	if (!(new = (t_room**)malloc(sizeof(*new) * (len + 1))))
 		return (NULL);
 	i = 0;
 	ngbr = data->start->nghbr;
