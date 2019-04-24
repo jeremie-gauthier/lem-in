@@ -32,8 +32,10 @@ static void	err_verbose(t_parser *data)
 	err_msg[13] = "No path found from start to end";
 	err_msg[14] = "Wrong room name";
 	err_msg[15] = "A connection already exists";
-
-	ft_printf("{red}[-] ERROR: {bold}%s.{reset}\n", err_msg[data->err_code - 1]);
+	if (data->err_code >= 1 && data->err_code <= 16)
+		ft_printf("{red}[-] ERROR: {bold}%s.{reset}\n", err_msg[data->err_code - 1]);
+	else
+		ft_printf("{red}ERROR{reset}\n");
 }
 
 static int	clean_quit(t_btree **graph, t_parser **data, const int ret)

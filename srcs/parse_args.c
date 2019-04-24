@@ -21,6 +21,8 @@ int			ft_parse_args(char **argv, t_parser *data)
 			data->line_count = 1;
 		else if (ft_strcmp(*argv, VERBOSE) == IDENTICAL)
 			data->verbose = 1;
+		else if (ft_strcmp(*argv, "LANGOUSTE") == IDENTICAL)
+			system("sensible-browser https://fr.wikipedia.org/wiki/Palinuridae");
 		else
 		{
 			display_usage();
