@@ -75,15 +75,16 @@ typedef struct	s_parser
 	t_bool			malloced;
 	t_colors		color_next_room;
 	int				ants;
-	int				ret : 21;
-	int				steps : 2;
-	int				status : 3;
+	int				ret : 17;
+	unsigned int	status : 2;
+	unsigned int	room_temoin : 1;
+	unsigned int	steps : 1;
 	unsigned int	start_set : 1;
 	unsigned int	end_set : 1;
-	unsigned int	room_temoin : 1;
 	unsigned int	color_auto : 1;
 	unsigned int	line_count : 1;
 	unsigned int	verbose : 1;
+	unsigned int	err_code : 6;
 }				t_parser;
 
 /*
@@ -102,6 +103,8 @@ void			reset_previous_data(t_room **tab, int len);
 **	Parsing functions
 */
 
+int				ft_set_err_code(t_parser *data, int code);
+void			*ft_set_err_code_ptr(t_parser *data, int code);
 int				ft_parse_args(char **argv, t_parser *data);
 int				ft_read_stdin(t_btree **graph, t_parser *data);
 int				ft_buf_parser(char *buf, t_parser *data, t_btree **graph);

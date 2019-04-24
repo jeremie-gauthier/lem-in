@@ -30,16 +30,16 @@ int			ft_register_ants(const char *buf, int *i, t_parser *data)
 	int		len;
 
 	if (*buf == '\0')
-		return (FAIL);
+		return (ft_set_err_code(data, 4));
 	diff = ft_strlimit(buf, '\n');
 	ants = ft_atol_base(buf, 10);
 	if (ants <= 0)
-		return (FAIL);
+		return (ft_set_err_code(data, 5));
 	len = ft_intlen(ants);
 	if (diff - len != 0)
-		return (FAIL);
+		return (ft_set_err_code(data, 6));
 	if (ants < -2147483648 || ants > 2147483647)
-		return (FAIL);
+		return (ft_set_err_code(data, 6));
 	data->ants = ants;
 	*i += len + 1;
 	return (SUCCESS);

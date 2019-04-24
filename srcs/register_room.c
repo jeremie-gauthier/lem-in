@@ -25,23 +25,24 @@ static int	clean_quit(char **str, t_room **room)
 **	It also checks for the validity of the room's name ('-' not included)
 */
 
-static char	*ft_strcdup_room(const char *buf, int *i, const char limit)
+static char	*ft_strcdup_room(const char *buf, int *i, const char limit,
+				t_parser *data)
 {
 	int		len;
 	char	*new;
 	int		tmp;
 
 	if (buf == NULL || buf[0] == 'L')
-		return (NULL);
+		return (ft_set_err_code_ptr(data, 10));
 	len = 0;
 	while (buf[len] && buf[len] != limit)
 	{
 		if (buf[len] == '-')
-			return (NULL);
+			return (ft_set_err_code_ptr(data, 10));
 		len++;
 	}
 	if (!(new = (char*)malloc(sizeof(*new) * len + 1)))
-		return (NULL);
+		return (ft_set_err_code_ptr(data, 1));
 	*i += len + 1;
 	tmp = 0;
 	while (tmp < len)
@@ -53,7 +54,7 @@ static char	*ft_strcdup_room(const char *buf, int *i, const char limit)
 	return (new);
 }
 
-static int	ft_search_duplicate(const t_room *room, t_btree *graph)
+static int	ft_search_duplicate(const t_room *room, t_btree *graph, t_parser *data)
 {
 	t_room	*ret;
 	int		(*cmpf)(const void *, const void *);
@@ -62,7 +63,7 @@ static int	ft_search_duplicate(const t_room *room, t_btree *graph)
 	ret = (t_room*)btree_search_data(graph, (void*)room, cmpf);
 	if (ret == NULL)
 		return (0);
-	return (1);
+	return (ft_set_err_code(data, 9));
 }
 
 static void	ft_register_start_end(t_parser *data, t_room *room)
@@ -98,22 +99,22 @@ int			ft_register_room(const char *buf, int *i, t_parser *data,
 	int		(*cmpf)(const void *, const void *);
 
 	cmpf = &ft_btreecmp;
-	if (!(name = ft_strcdup_room(&buf[*i], i, ' ')))
+	if (!(name = ft_strcdup_room(&buf[*i], i, ' ', data)))
 		return (FAIL);
 	if (!(room = init_room(name, data)))
 		return (clean_quit(&name, NULL));
-	if (ft_search_duplicate(room, *graph))
+	if (ft_search_duplicate(room, *graph, data))
 		return (clean_quit(NULL, &room));
 	if (buf[*i] == ' ')
 		return (clean_quit(NULL, &room));
 	if (!(btree_insert_data(graph, (void*)room, cmpf)))
 		return (clean_quit(NULL, &room));
 	if (!(ft_register_coord(&buf[*i], i, room, ' ')))
-		return (FAIL);
+		return (ft_set_err_code(data, 10));
 	if (buf[*i] == ' ')
-		return (FAIL);
+		return (ft_set_err_code(data, 9));
 	if (!(ft_register_coord(&buf[*i], i, room, '\n')))
-		return (FAIL);
+		return (ft_set_err_code(data, 10));
 	ft_register_start_end(data, room);
 	return (SUCCESS);
 }

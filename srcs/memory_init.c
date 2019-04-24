@@ -33,6 +33,7 @@ t_parser	*init_parser(void)
 	new->line_count = 0;
 	new->verbose = 0;
 	new->color_next_room = none;
+	new->err_code = 1;
 	return (new);
 }
 

@@ -48,7 +48,7 @@ int			edmondkarp(t_parser *data)
 	{
 		flow_max++;
 		if (!(flow_direction(data)))
-			return (FAIL);
+			return (ft_set_err_code(data, 13));
 		detect_vertex_separator(data);
 		set_len_path(data);
 		if (!(ft_ants_repartition(data, &tmp_tours)))
@@ -60,7 +60,7 @@ int			edmondkarp(t_parser *data)
 		}
 	}
 	if (flow_max == 0)
-		return (FAIL);
+		return (ft_set_err_code(data, 14));
 	display_moves(data);
 	return (SUCCESS);
 }

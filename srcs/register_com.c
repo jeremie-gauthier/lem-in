@@ -45,14 +45,14 @@ int			ft_register_com(const char *buf, int *i, t_parser *data)
 	if (ft_strncasecmp(buf, START_COM, 8) == IDENTICAL)
 	{
 		if (data->start_set == 1)
-			return (FAIL);
+			return (ft_set_err_code(data, 2));
 		data->status = START;
 		data->start_set = 1;
 	}
 	else if (ft_strncasecmp(buf, END_COM, 6) == IDENTICAL)
 	{
 		if (data->end_set == 1)
-			return (FAIL);
+			return (ft_set_err_code(data, 3));
 		data->status = END;
 		data->end_set = 1;
 	}

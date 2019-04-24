@@ -6,7 +6,9 @@ start 4 0
 end 4 6
 4 0 4
 1 4 2
+##blue
 2 4 4
+##MAgenTA
 5 8 2
 6 8 4
 start-1

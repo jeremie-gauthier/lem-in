@@ -46,8 +46,10 @@ static int	ft_room_parser(const char *buf, t_parser *data, t_btree **graph,
 		if (!(ft_strcpos(' ', &buf[*i], '\n')))
 		{
 			data->steps = 1;
-			if (data->start == NULL || data->end == NULL)
-				return (FAIL);
+			if (data->start == NULL)
+				return (ft_set_err_code(data, 7));
+			if (data->end == NULL)
+				return (ft_set_err_code(data, 8));
 		}
 		else
 		{
@@ -60,7 +62,7 @@ static int	ft_room_parser(const char *buf, t_parser *data, t_btree **graph,
 	{
 		if (ft_strcpos(' ', &buf[*i], '\n')
 				|| !ft_strcpos('-', &buf[*i], '\n'))
-			return (FAIL);
+			return (ft_set_err_code(data, 10));
 		if (!(ft_register_path(buf, i, graph, data)))
 			return (FAIL);
 	}

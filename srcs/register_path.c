@@ -24,7 +24,8 @@ static int		clean_quit(t_edge **edge1, t_edge **edge2, t_list **tmp,
 	return (ret);
 }
 
-static t_bool	ft_connection_exists(t_room *room, t_edge *nghbr)
+static t_bool	ft_connection_exists(t_room *room, t_edge *nghbr,
+					t_parser *data)
 {
 	t_list	*ngbr;
 	t_edge	*edge;
@@ -37,6 +38,7 @@ static t_bool	ft_connection_exists(t_room *room, t_edge *nghbr)
 			return (true);
 		ngbr = ngbr->next;
 	}
+	ft_set_err_code(data, 16);
 	return (false);
 }
 
@@ -45,7 +47,8 @@ static t_bool	ft_connection_exists(t_room *room, t_edge *nghbr)
 **	in the neighbours' list of each other.
 */
 
-static int		ft_add_neighbours(t_room *nghbr1, t_room *nghbr2)
+static int		ft_add_neighbours(t_room *nghbr1, t_room *nghbr2,
+					t_parser *data)
 {
 	t_list	*tmp;
 	t_edge	*edge1;
@@ -55,21 +58,21 @@ static int		ft_add_neighbours(t_room *nghbr1, t_room *nghbr2)
 		return (FAIL);
 	if (!(tmp = ft_lstnew_addr((void*)edge2)))
 		return (clean_quit(&edge2, NULL, NULL, FAIL));
-	if (ft_connection_exists(nghbr1, edge2))
+	if (ft_connection_exists(nghbr1, edge2, data))
 		return (clean_quit(&edge2, NULL, &tmp, FAIL));
 	ft_lstadd(&nghbr1->nghbr, tmp);
 	if (!(edge1 = init_edge(nghbr1)))
 		return (clean_quit(&edge2, NULL, NULL, FAIL));
 	if (!(tmp = ft_lstnew_addr((void*)edge1)))
 		return (clean_quit(&edge2, &edge1, NULL, FAIL));
-	if (ft_connection_exists(nghbr2, edge1))
+	if (ft_connection_exists(nghbr2, edge1, data))
 		return (clean_quit(&edge2, &edge1, &tmp, FAIL));
 	ft_lstadd(&nghbr2->nghbr, tmp);
 	return (SUCCESS);
 }
 
 static t_room	*ft_parse_room_name(const char *buf, t_btree *graph,
-					const t_parser *data, const int pos)
+					t_parser *data, const int pos)
 {
 	t_room	*ret;
 	int		(*cmpf)(const void *, const void *);
@@ -84,7 +87,7 @@ static t_room	*ft_parse_room_name(const char *buf, t_btree *graph,
 		return (data->end);
 	if ((ret = btree_search_data(graph, (void*)buf, cmpf)))
 		return (ret);
-	return (NULL);
+	return (ft_set_err_code_ptr(data, 12));
 }
 
 /*
@@ -103,11 +106,11 @@ int				ft_register_path(const char *buf, int *i, t_btree **graph,
 		return (FAIL);
 	*i += (ft_strlimit(&buf[*i], '-') + 1);
 	if (buf[*i] == '-')
-		return (FAIL);
+		return (ft_set_err_code(data, 10));
 	if (!(nghbr2 = ft_parse_room_name(&buf[*i], *graph, data, RIGHT)))
 		return (FAIL);
 	*i += (ft_strlimit(&buf[*i], '\n'));
-	if (!(ft_add_neighbours(nghbr1, nghbr2)))
+	if (!(ft_add_neighbours(nghbr1, nghbr2, data)))
 		return (FAIL);
 	return (SUCCESS);
 }

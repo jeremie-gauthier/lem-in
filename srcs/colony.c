@@ -42,7 +42,6 @@ static int		move_ant(t_room *current, t_room *origin, t_parser *data)
 	else if (origin == data->start && current->capacity > 0)
 		current->capacity--;
 	display_move_msg(current, origin, data);
-	//ft_printf("L%i-%s ", origin->ant, current->name);
 	if (current == data->end)
 		current->ant++;
 	else
