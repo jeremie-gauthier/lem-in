@@ -3,6 +3,7 @@ NAME	=	lem-in
 SOURCES	=	main.c\
 			memory_init.c\
 			memory_del.c\
+			parse_args.c\
 			ft_btreecmp.c\
 			ft_strccmp.c\
 			ft_strlimit.c\

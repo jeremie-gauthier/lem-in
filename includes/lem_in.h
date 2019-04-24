@@ -28,12 +28,27 @@
 # define END		2
 # define RIGHT		0
 # define LEFT		1
+# define AUTO_COLOR	"-c"
+# define LINE_COUNT	"-l"
+# define VERBOSE	"-v"
+
+typedef enum	e_colors
+{
+	none = -1,
+	red = 0,
+	green = 1,
+	yellow = 2,
+	blue = 3,
+	magenta = 4,
+	cyan = 5
+}				t_colors;
 
 typedef struct	s_room
 {
 	struct s_room	*ancestor;
 	t_list			*nghbr;
 	char			*name;
+	t_colors		color;
 	int				x;
 	int				y;
 	int				tmp_capacity;
@@ -58,13 +73,17 @@ typedef struct	s_parser
 	t_room			*end;
 	char			*last_line;
 	t_bool			malloced;
+	t_colors		color_next_room;
 	int				ants;
-	int				ret : 24;
+	int				ret : 21;
 	int				steps : 2;
 	int				status : 3;
 	unsigned int	start_set : 1;
 	unsigned int	end_set : 1;
 	unsigned int	room_temoin : 1;
+	unsigned int	color_auto : 1;
+	unsigned int	line_count : 1;
+	unsigned int	verbose : 1;
 }				t_parser;
 
 /*
@@ -72,7 +91,7 @@ typedef struct	s_parser
 */
 
 t_parser		*init_parser(void);
-t_room			*init_room(char *name, const int status);
+t_room			*init_room(char *name, t_parser *data);
 t_edge			*init_edge(t_room *room);
 t_room			**init_roomtab(t_parser *data, int len);
 void			del_room(t_room **room);
@@ -83,6 +102,7 @@ void			reset_previous_data(t_room **tab, int len);
 **	Parsing functions
 */
 
+int				ft_parse_args(char **argv, t_parser *data);
 int				ft_read_stdin(t_btree **graph, t_parser *data);
 int				ft_buf_parser(char *buf, t_parser *data, t_btree **graph);
 int				ft_register_ants(const char *buf, int *i, t_parser *data);

@@ -73,9 +73,15 @@ static void	ft_register_start_end(t_parser *data, t_room *room)
 		{
 			data->start = room;
 			data->start->ant = 1;
+			if (data->color_auto == 1)
+				room->color = green;
 		}
 		else if (data->status == END)
+		{
 			data->end = room;
+			if (data->color_auto == 1)
+				room->color = red;
+		}
 	}
 }
 
@@ -94,7 +100,7 @@ int			ft_register_room(const char *buf, int *i, t_parser *data,
 	cmpf = &ft_btreecmp;
 	if (!(name = ft_strcdup_room(&buf[*i], i, ' ')))
 		return (FAIL);
-	if (!(room = init_room(name, data->status)))
+	if (!(room = init_room(name, data)))
 		return (clean_quit(&name, NULL));
 	if (ft_search_duplicate(room, *graph))
 		return (clean_quit(NULL, &room));

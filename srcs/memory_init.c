@@ -29,21 +29,27 @@ t_parser	*init_parser(void)
 	new->last_line = NULL;
 	new->malloced = false;
 	new->room_temoin = 0;
+	new->color_auto = 0;
+	new->line_count = 0;
+	new->verbose = 0;
+	new->color_next_room = none;
 	return (new);
 }
 
-t_room		*init_room(char *name, const int status)
+t_room		*init_room(char *name, t_parser *data)
 {
 	t_room	*new;
 
 	if (!(new = (t_room*)malloc(sizeof(*new))))
 		return (NULL);
 	new->name = name;
+	new->color = data->color_next_room;
+	data->color_next_room = none;
 	new->x = 0;
 	new->y = 0;
 	new->ant = 0;
 	new->nghbr = NULL;
-	new->status = status;
+	new->status = data->status;
 	new->ancestor = NULL;
 	new->len_path = 0;
 	new->room_used = 0;

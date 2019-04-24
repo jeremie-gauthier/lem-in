@@ -12,13 +12,37 @@
 
 #include "../includes/lem_in.h"
 
+static void		display_move_msg(t_room *current, t_room *origin, t_parser *data)
+{
+	char	*palet[7];
+
+	palet[red] = RED;
+	palet[green] = GREEN;
+	palet[yellow] = YELLOW;
+	palet[blue] = BLUE;
+	palet[magenta] = MAGENTA;
+	palet[cyan] = CYAN;
+	if (origin == data->start && data->color_auto == 1)
+		ft_printf("{green}");
+	else if (current == data->end && data->color_auto == 1)
+		ft_printf("{red}");
+	else if (current->color != -1)
+		ft_printf("%s", palet[current->color]);
+	ft_printf("L%i-%s ", origin->ant, current->name);
+	if ((origin == data->start && data->color_auto == 1)
+			|| (current == data->end && data->color_auto == 1)
+			|| current->color != -1)
+		ft_printf("{reset}");
+}
+
 static int		move_ant(t_room *current, t_room *origin, t_parser *data)
 {
 	if (origin == data->start && current->capacity <= 0)
 		return (FAIL);
 	else if (origin == data->start && current->capacity > 0)
 		current->capacity--;
-	ft_printf("L%i-%s ", origin->ant, current->name);
+	display_move_msg(current, origin, data);
+	//ft_printf("L%i-%s ", origin->ant, current->name);
 	if (current == data->end)
 		current->ant++;
 	else

@@ -30,7 +30,7 @@ int			ft_register_ants(const char *buf, int *i, t_parser *data)
 	int		len;
 
 	if (*buf == '\0')
-		return (0);
+		return (FAIL);
 	diff = ft_strlimit(buf, '\n');
 	ants = ft_atol_base(buf, 10);
 	if (ants <= 0)
