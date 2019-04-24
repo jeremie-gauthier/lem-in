@@ -14,12 +14,19 @@
 
 static void	display_moves(t_parser *data)
 {
+	int	line_count;
+
+	line_count = 0;
 	ft_printf("\n");
 	while (data->end->ant < data->ants)
 	{
 		push_colony(data);
 		ft_putchar('\n');
+		line_count++;
 	}
+	if (data->line_count == 1)
+		ft_printf("{green}[+] Solved in %i %s !{reset}\n",
+			line_count, (line_count > 1) ? "lines" : "line");
 }
 
 /*
