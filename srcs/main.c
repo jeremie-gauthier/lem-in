@@ -23,7 +23,7 @@ static void	err_verbose(t_parser *data)
 	err_msg[4] = "The number of ants composing the graph cannot be negative";
 	err_msg[5] = "The number of ants is not of int type";
 	err_msg[6] = "There is no starting or ending room";
-	err_msg[7] = "There is no ending room";
+	err_msg[7] = "Wrong data file";
 	err_msg[8] = "Try to register a room that already exists";
 	err_msg[9] = "Wrong data format";
 	err_msg[10] = "Coordinates are not well formated";
@@ -49,8 +49,11 @@ static int	clean_quit(t_btree **graph, t_parser **data, const int ret)
 		while ((red = read(0, buf, BUF_SIZE)))
 		{
 			buf[red] = '\0';
-			if (!ft_str_is_ascii(buf))
+			if (!ft_str_is_ascii(buf) || red == -1)
+			{
+				(*data)->err_code = 8;
 				break ;
+			}
 			ft_printf("%s", buf);
 		}
 		if ((*data)->verbose == 1)
