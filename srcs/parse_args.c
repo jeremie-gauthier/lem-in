@@ -34,7 +34,7 @@ int			ft_parse_args(char **argv, t_parser *data)
 		else if (ft_strcmp(*argv, VERBOSE) == IDENTICAL)
 			data->verbose = 1;
 		else if (ft_strcmp(*argv, "LANGOUSTE") == IDENTICAL)
-			system("sensible-browser https://www.youtube.com/watch?v=KdKCGyUls2Y");
+			system("open https://youtube.com/embed/KdKCGyUls2Y?autoplay=1");
 		else
 		{
 			display_usage();
