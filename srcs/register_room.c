@@ -6,7 +6,7 @@
 /*   By: cmoulini <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 13:58:00 by cmoulini          #+#    #+#             */
-/*   Updated: 2019/04/19 13:59:00 by cmoulini         ###   ########.fr       */
+/*   Updated: 2019/04/25 15:58:00 by cmoulini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ static char	*ft_strcdup_room(const char *buf, int *i, const char limit,
 	return (new);
 }
 
-static int	ft_search_duplicate(const t_room *room, t_btree *graph, t_parser *data)
+static int	ft_search_duplicate(const t_room *room, t_btree *graph,
+				t_parser *data)
 {
 	t_room	*ret;
 	int		(*cmpf)(const void *, const void *);

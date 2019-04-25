@@ -6,7 +6,7 @@
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 14:09:35 by jergauth          #+#    #+#             */
-/*   Updated: 2019/04/23 16:58:58 by cmoulini         ###   ########.fr       */
+/*   Updated: 2019/04/25 15:54:21 by cmoulini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	err_verbose(t_parser *data)
 {
-	char	*err_msg[20];
+	char	*err_msg[17];
 
 	err_msg[0] = "Failed to malloc";
 	err_msg[1] = "Two starting rooms have been found";
@@ -33,7 +33,8 @@ static void	err_verbose(t_parser *data)
 	err_msg[14] = "Wrong room name";
 	err_msg[15] = "A connection already exists";
 	if (data->err_code >= 1 && data->err_code <= 16)
-		ft_printf("{red}[-] ERROR: {bold}%s.{reset}\n", err_msg[data->err_code - 1]);
+		ft_printf("{red}[-] ERROR: {bold}%s.{reset}\n",
+					err_msg[data->err_code - 1]);
 	else
 		ft_printf("{red}ERROR{reset}\n");
 }
@@ -72,7 +73,7 @@ int			main(int argc, char **argv)
 		graph = NULL;
 		if (!(data = init_parser()))
 		{
-			ft_printf("{red}[-] ERROR: Failed to malloc {bold}struct s_parser{reset}{red} in main.\n");
+			ft_printf("{red}[-] ERROR: Failed to malloc in main. {reset}\n");
 			return (1);
 		}
 		if (argc > 1)

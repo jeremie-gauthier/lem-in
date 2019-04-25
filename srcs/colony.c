@@ -6,13 +6,14 @@
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 14:08:58 by jergauth          #+#    #+#             */
-/*   Updated: 2019/04/19 14:08:59 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/04/25 15:52:23 by cmoulini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-static void		display_move_msg(t_room *current, t_room *origin, t_parser *data)
+static void		display_move_msg(t_room *current, t_room *origin,
+					t_parser *data)
 {
 	char	*palet[7];
 
