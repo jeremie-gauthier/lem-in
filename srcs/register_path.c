@@ -35,7 +35,11 @@ static t_bool	ft_connection_exists(t_room *room, t_edge *nghbr,
 	{
 		edge = ngbr->content;
 		if (edge->room == nghbr->room)
+		{
+			if (edge->room == room)
+				return (false);
 			return (true);
+		}
 		ngbr = ngbr->next;
 	}
 	ft_set_err_code(data, 16);
