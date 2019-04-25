@@ -48,6 +48,8 @@ static int	clean_quit(t_btree **graph, t_parser **data, const int ret)
 		while ((red = read(0, buf, BUF_SIZE)))
 		{
 			buf[red] = '\0';
+			if (!ft_str_is_ascii(buf))
+				break ;
 			ft_printf("%s", buf);
 		}
 		if ((*data)->verbose == 1)

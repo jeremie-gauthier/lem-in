@@ -26,7 +26,8 @@ int			ft_read_stdin(t_btree **graph, t_parser *data)
 	while ((data->ret = read(0, buf, BUF_SIZE)) > 0)
 	{
 		buf[data->ret] = '\0';
-		ft_printf("%s", buf);
+		if (ft_str_is_ascii(buf))
+			ft_printf("%s", buf);
 		i = 0;
 		while (buf[i] == '#')
 		{
