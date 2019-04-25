@@ -22,7 +22,7 @@ static void	err_verbose(t_parser *data)
 	err_msg[3] = "No ant have been registered";
 	err_msg[4] = "The number of ants composing the graph cannot be negative";
 	err_msg[5] = "The number of ants is not of int type";
-	err_msg[6] = "There is no starting room";
+	err_msg[6] = "There is no starting or ending room";
 	err_msg[7] = "There is no ending room";
 	err_msg[8] = "Try to register a room that already exists";
 	err_msg[9] = "Wrong data format";

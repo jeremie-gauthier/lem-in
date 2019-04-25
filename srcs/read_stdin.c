@@ -41,9 +41,8 @@ int			ft_read_stdin(t_btree **graph, t_parser *data)
 		if (!(ft_buf_parser(&buf[i], data, graph)))
 			return (FAIL);
 	}
-	if (data->ret == 0 && *graph == NULL)
-		return (FAIL);
-	if (data->start == NULL || data->end == NULL)
+	if ((data->ret == 0 && *graph == NULL) || data->start == NULL
+			|| data->end == NULL)
 		return (FAIL);
 	return (SUCCESS);
 }
